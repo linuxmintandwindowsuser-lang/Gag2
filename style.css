@@ -1,5 +1,5 @@
 body {
-    background-color: green;
+    background-color: #8ed96a;
     margin: 0;
     height: 100vh;
     overflow: hidden;
@@ -9,24 +9,29 @@ body {
 /* Logo higher up */
 .logo {
     position: absolute;
-    top: 40px; /* move higher */
+    top: 30px;
     left: 50%;
     transform: translateX(-50%);
     max-width: 400px;
     width: 80%;
 }
 
-/* Middle-left textbox */
-.textbox {
+/* Middle-left text box */
+.textpanel {
     position: absolute;
     left: 40px;
     top: 50%;
     transform: translateY(-50%);
 
-    width: 300px;
-    padding: 12px;
-    font-size: 18px;
+    width: 360px;
+    padding: 20px;
 
-    border: none;
-    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+
+    color: black;
+    font-size: 20px;
+    line-height: 1.6;
+
+    overflow: hidden;
 }
