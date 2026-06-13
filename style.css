@@ -1,37 +1,49 @@
-body {
-    background-color: #6fd07a;
-    margin: 0;
-    height: 100vh;
-    overflow: hidden;
-    position: relative;
-}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GAG 2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-/* Logo higher up */
-.logo {
-    position: absolute;
-    top: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    max-width: 400px;
-    width: 80%;
-}
+    <!-- Logo -->
+    <img src="root/pic/logo.png" alt="GAG 2 Logo" class="logo">
 
-/* Middle-left text box */
-.textpanel {
-    position: absolute;
-    left: 40px;
-    top: 50%;
-    transform: translateY(-50%);
+    <!-- Main textbox -->
+    <div class="textpanel">
+        This is a Gag 2 website one of the first<br>
+        it will help with everything soon<br>
+        BTW here is a code<br><br>
 
-    width: 360px;
-    padding: 20px;
+        <strong>TEAMGREENBEAN</strong>
+    </div>
 
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 15px;
+    <!-- Codes button -->
+    <button class="codes-button" onclick="openCodes()">
+        Codes
+    </button>
 
-    color: black;
-    font-size: 20px;
-    line-height: 1.6;
+    <!-- Popup GUI -->
+    <div class="popup" id="codesPopup">
 
-    overflow: hidden;
-}
+        <!-- Red X button -->
+        <button class="close-button" onclick="closeCodes()">
+            X
+        </button>
+
+        <div class="popup-content">
+            <h2>Codes</h2>
+
+            Placeholder line 1<br>
+            Placeholder line 2<br>
+            Placeholder line 3<br><br>
+
+            <strong>EXAMPLECODE</strong>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
