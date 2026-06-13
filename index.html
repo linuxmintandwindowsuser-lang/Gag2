@@ -28,9 +28,13 @@
         Seeds
     </button>
 
+    <!-- Leaderboard button -->
+    <button class="leaderboard-button" onclick="goLeaderboard()">
+        Leaderboard
+    </button>
+
     <!-- CODES POPUP -->
     <div id="codesGui" class="popup">
-
         <button class="close-button" onclick="hideCodes()">X</button>
 
         <div class="popup-text">
@@ -43,12 +47,10 @@
             <strong>Last Updated:</strong><br>
             JUNE 12 2026
         </div>
-
     </div>
 
     <!-- SEEDS POPUP -->
     <div id="seedsGui" class="popup">
-
         <button class="close-button" onclick="hideSeeds()">X</button>
 
         <div class="popup-text">
@@ -85,10 +87,9 @@
             <strong>Created:</strong><br>
             JUNE 12 2026
         </div>
-
     </div>
 
-    <!-- MODE TOGGLE BUTTON -->
+    <!-- MODE BUTTON -->
     <button class="mode-button" onclick="toggleMode()">
         <img id="modeIcon" src="root/pic/pc.png">
     </button>
@@ -111,11 +112,14 @@
             document.getElementById("seedsGui").style.display = "none";
         }
 
+        function goLeaderboard() {
+            window.location.href = "https://gag.gg";
+        }
+
         let isMobileMode = false;
 
         function toggleMode() {
             isMobileMode = !isMobileMode;
-
             document.body.classList.toggle("mobile-mode");
 
             const icon = document.getElementById("modeIcon");
