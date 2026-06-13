@@ -88,6 +88,11 @@
 
     </div>
 
+    <!-- MODE TOGGLE BUTTON -->
+    <button class="mode-button" onclick="toggleMode()">
+        <img id="modeIcon" src="root/pic/pc.png">
+    </button>
+
     <!-- SCRIPT -->
     <script>
         function showCodes() {
@@ -104,6 +109,22 @@
 
         function hideSeeds() {
             document.getElementById("seedsGui").style.display = "none";
+        }
+
+        let isMobileMode = false;
+
+        function toggleMode() {
+            isMobileMode = !isMobileMode;
+
+            document.body.classList.toggle("mobile-mode");
+
+            const icon = document.getElementById("modeIcon");
+
+            if (isMobileMode) {
+                icon.src = "root/pic/mobile.png";
+            } else {
+                icon.src = "root/pic/pc.png";
+            }
         }
     </script>
 
