@@ -17,7 +17,7 @@ body {
     width: 80%;
 }
 
-/* Main textbox */
+/* Main text box */
 .textpanel {
     position: absolute;
     left: 40px;
@@ -34,11 +34,11 @@ body {
     line-height: 1.6;
 }
 
-/* Codes button */
-.codes-button {
+/* Buttons */
+.codes-button,
+.seeds-button {
     position: absolute;
     left: 40px;
-    top: calc(50% + 170px);
 
     background: white;
     border: none;
@@ -49,7 +49,15 @@ body {
     cursor: pointer;
 }
 
-/* Popup GUI */
+.codes-button {
+    top: calc(50% + 170px);
+}
+
+.seeds-button {
+    top: calc(50% + 240px);
+}
+
+/* POPUP BOX */
 .popup {
     display: none;
 
@@ -58,7 +66,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
 
-    width: 400px;
+    width: 420px;
     padding: 20px;
 
     background: white;
@@ -66,25 +74,26 @@ body {
     border-radius: 20px;
 }
 
-/* Popup text */
+/* TEXT INSIDE POPUP */
 .popup-text {
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1.6;
 }
 
-/* Red X */
+/* RED X BUTTON */
 .close-button {
     position: absolute;
     top: 10px;
     right: 10px;
 
-    background: red;
-    color: white;
-    border: none;
-    border-radius: 10px;
-
     width: 40px;
     height: 40px;
+
+    background: red;
+    color: white;
+
+    border: none;
+    border-radius: 10px;
 
     font-size: 20px;
     cursor: pointer;
