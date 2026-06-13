@@ -18,22 +18,25 @@
         <strong>TEAMGREENBEAN</strong>
     </div>
 
-    <!-- Codes button -->
+    <!-- DAY/NIGHT TIMER -->
+    <div id="cycleTimer" class="cycle-timer">
+        Loading timer...
+    </div>
+
+    <!-- Buttons -->
     <button class="codes-button" onclick="showCodes()">
         Codes
     </button>
 
-    <!-- Seeds button -->
     <button class="seeds-button" onclick="showSeeds()">
         Seeds
     </button>
 
-    <!-- Leaderboard button -->
     <button class="leaderboard-button" onclick="goLeaderboard()">
         Leaderboard
     </button>
 
-    <!-- CODES POPUP -->
+    <!-- Codes popup -->
     <div id="codesGui" class="popup">
         <button class="close-button" onclick="hideCodes()">X</button>
 
@@ -49,7 +52,7 @@
         </div>
     </div>
 
-    <!-- SEEDS POPUP -->
+    <!-- Seeds popup -->
     <div id="seedsGui" class="popup">
         <button class="close-button" onclick="hideSeeds()">X</button>
 
@@ -85,17 +88,17 @@
             Venus Fly Trap<br><br>
 
             <strong>Created:</strong><br>
-            JUNE 12 2026
+            JUNE 13 2026
         </div>
     </div>
 
-    <!-- MODE BUTTON -->
+    <!-- Mode button -->
     <button class="mode-button" onclick="toggleMode()">
         <img id="modeIcon" src="root/pic/pc.png">
     </button>
 
-    <!-- SCRIPT -->
     <script>
+        // Popup controls
         function showCodes() {
             document.getElementById("codesGui").style.display = "block";
         }
@@ -112,17 +115,20 @@
             document.getElementById("seedsGui").style.display = "none";
         }
 
+        // Leaderboard redirect
         function goLeaderboard() {
             window.location.href = "https://gag.gg";
         }
 
+        // PC / Mobile mode toggle
         let isMobileMode = false;
 
         function toggleMode() {
             isMobileMode = !isMobileMode;
             document.body.classList.toggle("mobile-mode");
 
-            const icon = document.getElementById("modeIcon");
+            const icon =
+                document.getElementById("modeIcon");
 
             if (isMobileMode) {
                 icon.src = "root/pic/mobile.png";
@@ -130,6 +136,90 @@
                 icon.src = "root/pic/pc.png";
             }
         }
+
+        // ===== DAY / NIGHT TIMER =====
+
+        // Day + Noon = 7m 30s
+        const DAY_LENGTH = 450;
+
+        // Night = 2m
+        const NIGHT_LENGTH = 120;
+
+        // Full cycle
+        const TOTAL_CYCLE =
+            DAY_LENGTH + NIGHT_LENGTH;
+
+        // Day starts in ~20 sec right now
+        const cycleStart = new Date(
+            Date.now() - (NIGHT_LENGTH - 20) * 1000
+        );
+
+        function updateCycleTimer() {
+
+            const now = new Date();
+
+            const elapsed =
+                (now - cycleStart) / 1000;
+
+            const cycleTime =
+                ((elapsed % TOTAL_CYCLE)
+                + TOTAL_CYCLE)
+                % TOTAL_CYCLE;
+
+            const timer =
+                document.getElementById(
+                    "cycleTimer"
+                );
+
+            // NIGHT
+            if (cycleTime < NIGHT_LENGTH) {
+
+                const remaining =
+                    Math.ceil(
+                        NIGHT_LENGTH - cycleTime
+                    );
+
+                const mins =
+                    Math.floor(remaining / 60);
+
+                const secs =
+                    remaining % 60;
+
+                timer.innerHTML =
+                    `🌙 Night ends in: ${
+                        mins
+                    }:${
+                        secs.toString()
+                        .padStart(2, "0")
+                    }`;
+            }
+
+            // DAY
+            else {
+
+                const remaining =
+                    Math.ceil(
+                        TOTAL_CYCLE - cycleTime
+                    );
+
+                const mins =
+                    Math.floor(remaining / 60);
+
+                const secs =
+                    remaining % 60;
+
+                timer.innerHTML =
+                    `🌞 Day ends in: ${
+                        mins
+                    }:${
+                        secs.toString()
+                        .padStart(2, "0")
+                    }`;
+            }
+        }
+
+        updateCycleTimer();
+        setInterval(updateCycleTimer, 1000);
     </script>
 
 </body>
