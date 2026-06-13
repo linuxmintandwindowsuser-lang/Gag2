@@ -1,115 +1,136 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Grow A Garden 2 Page</title>
-<link rel="stylesheet" href="style.css">
+    <title>Grow A Garden 2 Page</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<img src="root/pic/logo.png" class="logo">
+    <!-- Logo -->
+    <img src="root/pic/logo.png" class="logo">
 
-<div id="cycleTimer" class="cycle-timer"></div>
+    <!-- Main panel -->
+    <div class="textpanel">
+        This is a Gag 2 website one of the first<br>
+        it will help with everything soon<br>
+        BTW here is a code<br><br>
 
-<div class="textpanel">
-    This is a Gag 2 website one of the first<br>
-    it will help with everything soon<br><br>
-    <strong>TEAMGREENBEAN</strong>
-</div>
+        <strong>TEAMGREENBEAN</strong>
+    </div>
 
-<button class="codes-button" onclick="showCodes()">Codes</button>
-<button class="seeds-button" onclick="showSeeds()">Seeds</button>
-<button class="leaderboard-button" onclick="goLeaderboard()">Leaderboard</button>
+    <!-- Codes button -->
+    <button class="codes-button" onclick="showCodes()">
+        Codes
+    </button>
 
-<button onclick="calibrate()" style="
-position:fixed;bottom:20px;left:20px;
-padding:10px;background:white;border:none;border-radius:10px;
-">
-Calibrate Now
-</button>
+    <!-- Seeds button -->
+    <button class="seeds-button" onclick="showSeeds()">
+        Seeds
+    </button>
 
-<div id="codesGui" class="popup">
-    <button class="close-button" onclick="hideCodes()">X</button>
-    TEAMGREENBEAN<br>NOMORECODESYET
-</div>
+    <!-- Leaderboard button -->
+    <button class="leaderboard-button" onclick="goLeaderboard()">
+        Leaderboard
+    </button>
 
-<div id="seedsGui" class="popup">
-    <button class="close-button" onclick="hideSeeds()">X</button>
-    Apple<br>Banana<br>Bamboo<br>Blueberry<br>Cactus<br>
-    Carrot<br>Coconut<br>Corn<br>Grape<br>Mango<br>
-    Mushroom<br>Pineapple<br>Pumpkin<br>Strawberry<br>
-    Tomato<br>Tulip<br>Acorn<br>Cherry<br>Green Bean<br>
-    Lotus<br>Beanstalk<br>Dragon's Breath<br>Moon Bloom<br>
-    Poison Apple<br>Pomegranate<br>Sunflower<br>Venus Fly Trap
-</div>
+    <!-- CODES POPUP -->
+    <div id="codesGui" class="popup">
+        <button class="close-button" onclick="hideCodes()">X</button>
 
-<script>
+        <div class="popup-text">
+            <strong>Codes</strong><br><br>
 
-/* ================= UI ================= */
-function showCodes(){document.getElementById("codesGui").style.display="block";}
-function hideCodes(){document.getElementById("codesGui").style.display="none";}
-function showSeeds(){document.getElementById("seedsGui").style.display="block";}
-function hideSeeds(){document.getElementById("seedsGui").style.display="none";}
-function goLeaderboard(){window.location.href="https://gag.gg";}
+            TEAMGREENBEAN<br>
+            NOMORECODESYET<br>
+            NOMORECODESYET<br><br>
 
-/* ================= TIMER ================= */
+            <strong>Last Updated:</strong><br>
+            JUNE 12 2026
+        </div>
+    </div>
 
-const DAY = 450;
-const NIGHT = 120;
-const TOTAL = DAY + NIGHT;
+    <!-- SEEDS POPUP -->
+    <div id="seedsGui" class="popup">
+        <button class="close-button" onclick="hideSeeds()">X</button>
 
-/*
-🔥 REAL FIX:
-We store offset locally so refresh NEVER breaks it
-*/
-let offset = parseInt(localStorage.getItem("cycleOffset") || "0");
+        <div class="popup-text">
+            <strong>Seeds</strong><br><br>
 
-function calibrate(){
+            Apple<br>
+            Banana<br>
+            Bamboo<br>
+            Blueberry<br>
+            Cactus<br>
+            Carrot<br>
+            Coconut<br>
+            Corn<br>
+            Grape<br>
+            Mango<br>
+            Mushroom<br>
+            Pineapple<br>
+            Pumpkin<br>
+            Strawberry<br>
+            Tomato<br>
+            Tulip<br>
+            Acorn<br>
+            Cherry<br>
+            Green Bean<br>
+            Lotus<br>
+            Beanstalk<br>
+            Dragon's Breath<br>
+            Moon Bloom<br>
+            Poison Apple<br>
+            Pomegranate<br>
+            Sunflower<br>
+            Venus Fly Trap<br><br>
 
-    const now = new Date();
+            <strong>Created:</strong><br>
+            JUNE 12 2026
+        </div>
+    </div>
 
-    const seconds =
-        now.getUTCHours()*3600 +
-        now.getUTCMinutes()*60 +
-        now.getUTCSeconds();
+    <!-- MODE BUTTON -->
+    <button class="mode-button" onclick="toggleMode()">
+        <img id="modeIcon" src="root/pic/pc.png">
+    </button>
 
-    // we assume calibration happens EXACTLY at correct moment in cycle
-    const currentCycle = seconds % TOTAL;
+    <!-- SCRIPT -->
+    <script>
+        function showCodes() {
+            document.getElementById("codesGui").style.display = "block";
+        }
 
-    offset = -currentCycle;
+        function hideCodes() {
+            document.getElementById("codesGui").style.display = "none";
+        }
 
-    localStorage.setItem("cycleOffset", offset);
+        function showSeeds() {
+            document.getElementById("seedsGui").style.display = "block";
+        }
 
-    alert("Calibrated! Timer synced.");
-}
+        function hideSeeds() {
+            document.getElementById("seedsGui").style.display = "none";
+        }
 
-function updateTimer(){
+        function goLeaderboard() {
+            window.location.href = "https://gag.gg";
+        }
 
-    const now = new Date();
+        let isMobileMode = false;
 
-    const seconds =
-        now.getUTCHours()*3600 +
-        now.getUTCMinutes()*60 +
-        now.getUTCSeconds();
+        function toggleMode() {
+            isMobileMode = !isMobileMode;
+            document.body.classList.toggle("mobile-mode");
 
-    const cycle = (seconds + offset + TOTAL) % TOTAL;
+            const icon = document.getElementById("modeIcon");
 
-    const el = document.getElementById("cycleTimer");
-
-    if(cycle < NIGHT){
-        let r = Math.ceil(NIGHT - cycle);
-        el.innerHTML = `🌙 Night • ${Math.floor(r/60)}:${(r%60).toString().padStart(2,"0")}`;
-    } else {
-        let r = Math.ceil(TOTAL - cycle);
-        el.innerHTML = `🌞 Day • ${Math.floor(r/60)}:${(r%60).toString().padStart(2,"0")}`;
-    }
-}
-
-updateTimer();
-setInterval(updateTimer,1000);
-
-</script>
+            if (isMobileMode) {
+                icon.src = "root/pic/mobile.png";
+            } else {
+                icon.src = "root/pic/pc.png";
+            }
+        }
+    </script>
 
 </body>
 </html>
