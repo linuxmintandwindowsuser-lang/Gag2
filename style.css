@@ -3,7 +3,6 @@ body{
     min-height:100vh;
     background:#6fd07a;
     font-family:Arial;
-    overflow-x:hidden;
 }
 
 /* LOGO */
@@ -37,7 +36,7 @@ body{
     top:50%;
     transform:translateY(-50%);
 
-    width:min(360px,85vw);
+    width:360px;
     padding:20px;
 
     background:rgba(255,255,255,0.5);
@@ -58,25 +57,24 @@ body{
     font-size:18px;
 }
 
-.codes-button{ top:calc(50% + 170px); }
-.seeds-button{ top:calc(50% + 230px); }
-.leaderboard-button{ top:calc(50% + 290px); }
+.codes-button{ top:60%; }
+.seeds-button{ top:68%; }
+.leaderboard-button{ top:76%; }
 
-/* POPUP */
+/* POPUPS */
 .popup{
     display:none;
     position:fixed;
     top:50%;
     left:50%;
     transform:translate(-50%,-50%);
-    width:420px;
+    width:400px;
     background:white;
-    border:3px solid black;
     border-radius:20px;
+    border:3px solid black;
     padding:20px;
 }
 
-/* CLOSE */
 .close-button{
     position:absolute;
     top:10px;
