@@ -8,34 +8,80 @@
 
 <body>
 
+<!-- LOGO -->
 <img src="root/pic/logo.png" class="logo">
 
+<!-- TIMER -->
 <div id="cycleTimer" class="cycle-timer"></div>
 
+<!-- MAIN PANEL -->
 <div class="textpanel">
     This is a Gag 2 website one of the first<br>
     it will help with everything soon<br><br>
     <strong>TEAMGREENBEAN</strong>
 </div>
 
+<!-- BUTTONS -->
+<button class="codes-button" onclick="showCodes()">Codes</button>
+<button class="seeds-button" onclick="showSeeds()">Seeds</button>
+<button class="leaderboard-button" onclick="goLeaderboard()">Leaderboard</button>
+
+<!-- CODES POPUP -->
+<div id="codesGui" class="popup">
+    <button class="close-button" onclick="hideCodes()">X</button>
+    <div class="popup-text">
+        TEAMGREENBEAN<br>
+        NOMORECODESYET
+    </div>
+</div>
+
+<!-- SEEDS POPUP -->
+<div id="seedsGui" class="popup">
+    <button class="close-button" onclick="hideSeeds()">X</button>
+    <div class="popup-text">
+        Apple<br>Banana<br>Bamboo<br>Blueberry<br>Cactus<br>
+        Carrot<br>Coconut<br>Corn<br>Grape<br>Mango<br>
+        Mushroom<br>Pineapple<br>Pumpkin<br>Strawberry<br>
+        Tomato<br>Tulip<br>Acorn<br>Cherry<br>Green Bean<br>
+        Lotus<br>Beanstalk<br>Dragon's Breath<br>Moon Bloom<br>
+        Poison Apple<br>Pomegranate<br>Sunflower<br>Venus Fly Trap
+    </div>
+</div>
+
 <script>
 
-// ===== CYCLE SETTINGS =====
+/* ================= POPUPS ================= */
+function showCodes(){
+    document.getElementById("codesGui").style.display="block";
+}
+function hideCodes(){
+    document.getElementById("codesGui").style.display="none";
+}
+
+function showSeeds(){
+    document.getElementById("seedsGui").style.display="block";
+}
+function hideSeeds(){
+    document.getElementById("seedsGui").style.display="none";
+}
+
+function goLeaderboard(){
+    window.location.href="https://gag.gg";
+}
+
+/* ================= TIMER ================= */
+
 const DAY = 450;
 const NIGHT = 120;
 const TOTAL = DAY + NIGHT;
 
 /*
-🔥 RIGHT NOW CONDITION:
-Night starts in 90 seconds (1:30)
-
-That means we set cycle so:
-we are at (TOTAL - 90) seconds into the cycle.
+🔥 IMPORTANT FIX:
+We anchor so that RIGHT NOW:
+➡ night starts in 90 seconds
+➡ cycle is consistent after refresh
 */
-
-// start time shifted so current position = TOTAL - 90
-const cycleStart =
-    Date.now() - ((TOTAL - 90) * 1000);
+const cycleStart = Date.now() - ((TOTAL - 90) * 1000);
 
 function updateTimer(){
 
