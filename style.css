@@ -37,9 +37,10 @@ body {
     line-height: 1.6;
 }
 
-/* BUTTONS */
+/* BUTTONS (BASE STYLE) */
 .codes-button,
-.seeds-button {
+.seeds-button,
+.leaderboard-button {
     position: absolute;
     left: 40px;
 
@@ -54,6 +55,7 @@ body {
     cursor: pointer;
 }
 
+/* BUTTON POSITIONS */
 .codes-button {
     top: calc(50% + 170px);
 }
@@ -62,7 +64,11 @@ body {
     top: calc(50% + 230px);
 }
 
-/* POPUP */
+.leaderboard-button {
+    top: calc(50% + 290px);
+}
+
+/* POPUP BOX */
 .popup {
     display: none;
 
@@ -105,7 +111,7 @@ body {
     cursor: pointer;
 }
 
-/* MODE BUTTON */
+/* MODE BUTTON (PC / MOBILE TOGGLE) */
 .mode-button {
     position: fixed;
     bottom: 20px;
@@ -130,7 +136,7 @@ body {
     height: 35px;
 }
 
-/* MOBILE MODE */
+/* MOBILE MODE OVERRIDES */
 body.mobile-mode .textpanel {
     left: 50%;
     transform: translate(-50%, -50%);
@@ -138,7 +144,8 @@ body.mobile-mode .textpanel {
 }
 
 body.mobile-mode .codes-button,
-body.mobile-mode .seeds-button {
+body.mobile-mode .seeds-button,
+body.mobile-mode .leaderboard-button {
     left: 50%;
     transform: translateX(-50%);
 }
