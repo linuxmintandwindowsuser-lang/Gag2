@@ -53,37 +53,34 @@ const NIGHT = 120;
 const TOTAL = DAY + NIGHT;
 
 /*
-🔥 THE ONLY IMPORTANT VALUE:
+🔥 REAL FIX:
 
-We define where we are RIGHT NOW in the cycle.
+You MUST set ONE real anchor:
 
-Right now you said:
-➡️ night in ~8 minutes 12 seconds (or similar earlier states)
+Example:
+At this exact moment in your game:
+👉 cycle position = 0 (night start)
 
-So we store current position in cycle:
+Put that time here:
 */
-
-const cyclePositionNow = 0; 
-// change ONLY if you want to shift alignment
+const anchorTime = new Date("2026-06-13T00:00:00Z").getTime();
+const anchorCyclePosition = 0; // 0 = night start
 
 function updateTimer(){
 
-    const now = new Date();
+    const now = Date.now();
 
-    const seconds =
-        now.getUTCHours()*3600 +
-        now.getUTCMinutes()*60 +
-        now.getUTCSeconds();
-
-    const t = (seconds + cyclePositionNow) % TOTAL;
+    const cycle =
+        ((now - anchorTime) / 1000 + anchorCyclePosition)
+        % TOTAL;
 
     const el = document.getElementById("cycleTimer");
 
-    if(t < NIGHT){
-        let r = Math.ceil(NIGHT - t);
+    if(cycle < NIGHT){
+        let r = Math.ceil(NIGHT - cycle);
         el.innerHTML = `🌙 Night • ${Math.floor(r/60)}:${(r%60).toString().padStart(2,"0")}`;
     } else {
-        let r = Math.ceil(TOTAL - t);
+        let r = Math.ceil(TOTAL - cycle);
         el.innerHTML = `🌞 Day • ${Math.floor(r/60)}:${(r%60).toString().padStart(2,"0")}`;
     }
 }
