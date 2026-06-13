@@ -22,6 +22,13 @@
 <button class="seeds-button" onclick="showSeeds()">Seeds</button>
 <button class="leaderboard-button" onclick="goLeaderboard()">Leaderboard</button>
 
+<button onclick="calibrate()" style="
+position:fixed;bottom:20px;left:20px;
+padding:10px;background:white;border:none;border-radius:10px;
+">
+Calibrate Now
+</button>
+
 <div id="codesGui" class="popup">
     <button class="close-button" onclick="hideCodes()">X</button>
     TEAMGREENBEAN<br>NOMORECODESYET
@@ -54,25 +61,39 @@ const TOTAL = DAY + NIGHT;
 
 /*
 🔥 REAL FIX:
-
-You MUST set ONE real anchor:
-
-Example:
-At this exact moment in your game:
-👉 cycle position = 0 (night start)
-
-Put that time here:
+We store offset locally so refresh NEVER breaks it
 */
-const anchorTime = new Date("2026-06-13T00:00:00Z").getTime();
-const anchorCyclePosition = 0; // 0 = night start
+let offset = parseInt(localStorage.getItem("cycleOffset") || "0");
+
+function calibrate(){
+
+    const now = new Date();
+
+    const seconds =
+        now.getUTCHours()*3600 +
+        now.getUTCMinutes()*60 +
+        now.getUTCSeconds();
+
+    // we assume calibration happens EXACTLY at correct moment in cycle
+    const currentCycle = seconds % TOTAL;
+
+    offset = -currentCycle;
+
+    localStorage.setItem("cycleOffset", offset);
+
+    alert("Calibrated! Timer synced.");
+}
 
 function updateTimer(){
 
-    const now = Date.now();
+    const now = new Date();
 
-    const cycle =
-        ((now - anchorTime) / 1000 + anchorCyclePosition)
-        % TOTAL;
+    const seconds =
+        now.getUTCHours()*3600 +
+        now.getUTCMinutes()*60 +
+        now.getUTCSeconds();
+
+    const cycle = (seconds + offset + TOTAL) % TOTAL;
 
     const el = document.getElementById("cycleTimer");
 
