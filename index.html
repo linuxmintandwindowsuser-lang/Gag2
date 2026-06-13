@@ -7,37 +7,25 @@
 </head>
 <body>
 
-    <!-- LOGO -->
     <img src="root/pic/logo.png" class="logo">
 
-    <!-- TIMER -->
-    <div id="cycleTimer" class="cycle-timer">
-        Loading...
-    </div>
+    <div id="cycleTimer" class="cycle-timer">Loading...</div>
 
-    <!-- MAIN PANEL -->
     <div class="textpanel">
         This is a Gag 2 website one of the first<br>
         it will help with everything soon<br><br>
         <strong>TEAMGREENBEAN</strong>
     </div>
 
-    <!-- BUTTONS -->
     <button class="codes-button" onclick="showCodes()">Codes</button>
     <button class="seeds-button" onclick="showSeeds()">Seeds</button>
     <button class="leaderboard-button" onclick="goLeaderboard()">Leaderboard</button>
 
-    <!-- CODES -->
     <div id="codesGui" class="popup">
         <button class="close-button" onclick="hideCodes()">X</button>
-        <div class="popup-text">
-            TEAMGREENBEAN<br>
-            NOMORECODESYET<br>
-            NOMORECODESYET
-        </div>
+        <div class="popup-text">TEAMGREENBEAN<br>NOMORECODESYET</div>
     </div>
 
-    <!-- SEEDS -->
     <div id="seedsGui" class="popup">
         <button class="close-button" onclick="hideSeeds()">X</button>
         <div class="popup-text">
@@ -51,52 +39,40 @@
     </div>
 
 <script>
-// ================= POPUPS =================
-function showCodes(){ document.getElementById("codesGui").style.display="block"; }
-function hideCodes(){ document.getElementById("codesGui").style.display="none"; }
+function showCodes(){document.getElementById("codesGui").style.display="block";}
+function hideCodes(){document.getElementById("codesGui").style.display="none";}
 
-function showSeeds(){ document.getElementById("seedsGui").style.display="block"; }
-function hideSeeds(){ document.getElementById("seedsGui").style.display="none"; }
+function showSeeds(){document.getElementById("seedsGui").style.display="block";}
+function hideSeeds(){document.getElementById("seedsGui").style.display="none";}
 
 function goLeaderboard(){
     window.location.href="https://gag.gg";
 }
 
-// ================= TIMER =================
-
-// 7m30s day, 2m night
+// ===== TIMER =====
 const DAY = 450;
 const NIGHT = 120;
 const TOTAL = DAY + NIGHT;
 
 /*
-REAL FIX:
-We base cycle ONLY on current UTC seconds in the day.
-No stored start time = no reset bugs.
+🔥 THIS is the ONLY thing you MUST set correctly:
+
+When NIGHT STARTS in your game, take the real time and paste it here.
 */
+const cycleStart = new Date("2026-06-13T00:00:00").getTime();
+
 function updateTimer(){
-
-    const now = new Date();
-
-    // seconds in current UTC day
-    const secondsToday =
-        now.getUTCHours() * 3600 +
-        now.getUTCMinutes() * 60 +
-        now.getUTCSeconds();
-
-    // loop cycle forever
-    const t = secondsToday % TOTAL;
+    const now = Date.now();
+    const t = ((now - cycleStart)/1000) % TOTAL;
 
     const el = document.getElementById("cycleTimer");
 
     if(t < NIGHT){
         let r = Math.ceil(NIGHT - t);
-        el.innerHTML =
-            `🌙 Night • ${Math.floor(r/60)}:${(r%60).toString().padStart(2,"0")}`;
+        el.innerHTML = `🌙 Night • ${Math.floor(r/60)}:${(r%60).toString().padStart(2,"0")}`;
     } else {
         let r = Math.ceil(TOTAL - t);
-        el.innerHTML =
-            `🌞 Day • ${Math.floor(r/60)}:${(r%60).toString().padStart(2,"0")}`;
+        el.innerHTML = `🌞 Day • ${Math.floor(r/60)}:${(r%60).toString().padStart(2,"0")}`;
     }
 }
 
