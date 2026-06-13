@@ -9,7 +9,7 @@
     <!-- Logo -->
     <img src="root/pic/logo.png" alt="GAG 2 Logo" class="logo">
 
-    <!-- Main textbox -->
+    <!-- Main text box -->
     <div class="textpanel">
         This is a Gag 2 website one of the first<br>
         it will help with everything soon<br>
@@ -19,31 +19,36 @@
     </div>
 
     <!-- Codes button -->
-    <button class="codes-button" onclick="openCodes()">
+    <button class="codes-button" onclick="showCodes()">
         Codes
     </button>
 
-    <!-- Popup GUI -->
-    <div class="popup" id="codesPopup">
+    <!-- Popup -->
+    <div id="codesGui" class="popup">
 
-        <!-- Red X button -->
-        <button class="close-button" onclick="closeCodes()">
+        <button class="close-button" onclick="hideCodes()">
             X
         </button>
 
-        <div class="popup-content">
-            <h2>Codes</h2>
-
-            TEAMGREENBEAN<br>
-            NO MORE CODES<br>
-            NO MORE CODES<br><br>
+        <div class="popup-text">
+            Placeholder line 1<br>
+            Placeholder line 2<br>
+            Placeholder line 3<br><br>
 
             <strong>EXAMPLECODE</strong>
         </div>
 
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        function showCodes() {
+            document.getElementById("codesGui").style.display = "block";
+        }
+
+        function hideCodes() {
+            document.getElementById("codesGui").style.display = "none";
+        }
+    </script>
 
 </body>
 </html>
