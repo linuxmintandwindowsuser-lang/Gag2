@@ -1,49 +1,91 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>GAG 2</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+body {
+    background-color: #6fd07a;
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    font-family: Arial, sans-serif;
+}
 
-    <!-- Logo -->
-    <img src="root/pic/logo.png" alt="GAG 2 Logo" class="logo">
+/* Logo */
+.logo {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 400px;
+    width: 80%;
+}
 
-    <!-- Main textbox -->
-    <div class="textpanel">
-        This is a Gag 2 website one of the first<br>
-        it will help with everything soon<br>
-        BTW here is a code<br><br>
+/* Main textbox */
+.textpanel {
+    position: absolute;
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%);
 
-        <strong>TEAMGREENBEAN</strong>
-    </div>
+    width: 360px;
+    padding: 20px;
 
-    <!-- Codes button -->
-    <button class="codes-button" onclick="openCodes()">
-        Codes
-    </button>
+    background: rgba(255,255,255,0.5);
+    border-radius: 15px;
 
-    <!-- Popup GUI -->
-    <div class="popup" id="codesPopup">
+    font-size: 20px;
+    line-height: 1.6;
+}
 
-        <!-- Red X button -->
-        <button class="close-button" onclick="closeCodes()">
-            X
-        </button>
+/* Codes button */
+.codes-button {
+    position: absolute;
+    left: 40px;
+    top: calc(50% + 170px);
 
-        <div class="popup-content">
-            <h2>Codes</h2>
+    background: white;
+    border: none;
+    border-radius: 15px;
 
-            Placeholder line 1<br>
-            Placeholder line 2<br>
-            Placeholder line 3<br><br>
+    padding: 12px 30px;
+    font-size: 20px;
+    cursor: pointer;
+}
 
-            <strong>EXAMPLECODE</strong>
-        </div>
+/* Popup GUI */
+.popup {
+    display: none;
 
-    </div>
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
-    <script src="script.js"></script>
+    width: 400px;
+    padding: 20px;
 
-</body>
-</html>
+    background: white;
+    border: 3px solid black;
+    border-radius: 20px;
+}
+
+/* Popup text */
+.popup-text {
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+/* Red X */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 10px;
+
+    width: 40px;
+    height: 40px;
+
+    font-size: 20px;
+    cursor: pointer;
+}
