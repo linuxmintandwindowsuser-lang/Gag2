@@ -18,53 +18,30 @@
     <strong>TEAMGREENBEAN</strong>
 </div>
 
-<button class="codes-button" onclick="showCodes()">Codes</button>
-<button class="seeds-button" onclick="showSeeds()">Seeds</button>
-<button class="leaderboard-button" onclick="goLeaderboard()">Leaderboard</button>
-
-<div id="codesGui" class="popup">
-    <button class="close-button" onclick="hideCodes()">X</button>
-    TEAMGREENBEAN<br>NOMORECODESYET
-</div>
-
-<div id="seedsGui" class="popup">
-    <button class="close-button" onclick="hideSeeds()">X</button>
-    Apple<br>Banana<br>Bamboo<br>Blueberry<br>Cactus<br>
-    Carrot<br>Coconut<br>Corn<br>Grape<br>Mango<br>
-    Mushroom<br>Pineapple<br>Pumpkin<br>Strawberry<br>
-    Tomato<br>Tulip<br>Acorn<br>Cherry<br>Green Bean<br>
-    Lotus<br>Beanstalk<br>Dragon's Breath<br>Moon Bloom<br>
-    Poison Apple<br>Pomegranate<br>Sunflower<br>Venus Fly Trap
-</div>
-
 <script>
-function showCodes(){document.getElementById("codesGui").style.display="block";}
-function hideCodes(){document.getElementById("codesGui").style.display="none";}
 
-function showSeeds(){document.getElementById("seedsGui").style.display="block";}
-function hideSeeds(){document.getElementById("seedsGui").style.display="none";}
-
-function goLeaderboard(){
-    window.location.href="https://gag.gg";
-}
-
-// ===== STABLE CYCLE (REFRESH PROOF) =====
-
+// ===== CYCLE SETTINGS =====
 const DAY = 450;
 const NIGHT = 120;
 const TOTAL = DAY + NIGHT;
 
+/*
+🔥 RIGHT NOW CONDITION:
+Night starts in 90 seconds (1:30)
+
+That means we set cycle so:
+we are at (TOTAL - 90) seconds into the cycle.
+*/
+
+// start time shifted so current position = TOTAL - 90
+const cycleStart =
+    Date.now() - ((TOTAL - 90) * 1000);
+
 function updateTimer(){
 
-    const now = new Date();
+    const now = Date.now();
 
-    // stable UTC-based loop (NO offsets, NO resets)
-    const seconds =
-        now.getUTCHours()*3600 +
-        now.getUTCMinutes()*60 +
-        now.getUTCSeconds();
-
-    const t = seconds % TOTAL;
+    let t = ((now - cycleStart)/1000) % TOTAL;
 
     const el = document.getElementById("cycleTimer");
 
@@ -81,6 +58,7 @@ function updateTimer(){
 
 updateTimer();
 setInterval(updateTimer,1000);
+
 </script>
 
 </body>
