@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grow A Garden 2 Page</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -9,6 +10,11 @@
     <!-- Logo -->
     <img src="root/pic/logo.png" class="logo">
 
+    <!-- Day/Night Timer -->
+    <div id="cycleTimer" class="cycle-timer">
+        Loading timer...
+    </div>
+
     <!-- Main panel -->
     <div class="textpanel">
         This is a Gag 2 website one of the first<br>
@@ -16,11 +22,6 @@
         BTW here is a code<br><br>
 
         <strong>TEAMGREENBEAN</strong>
-    </div>
-
-    <!-- DAY/NIGHT TIMER -->
-    <div id="cycleTimer" class="cycle-timer">
-        Loading timer...
     </div>
 
     <!-- Buttons -->
@@ -85,20 +86,17 @@
             Poison Apple<br>
             Pomegranate<br>
             Sunflower<br>
-            Venus Fly Trap<br><br>
-
-            <strong>Created:</strong><br>
-            JUNE 13 2026
+            Venus Fly Trap
         </div>
     </div>
 
-    <!-- Mode button -->
+    <!-- Mode Button -->
     <button class="mode-button" onclick="toggleMode()">
         <img id="modeIcon" src="root/pic/pc.png">
     </button>
 
     <script>
-        // Popup controls
+        // Popups
         function showCodes() {
             document.getElementById("codesGui").style.display = "block";
         }
@@ -115,56 +113,68 @@
             document.getElementById("seedsGui").style.display = "none";
         }
 
-        // Leaderboard redirect
+        // Leaderboard
         function goLeaderboard() {
             window.location.href = "https://gag.gg";
         }
 
-        // PC / Mobile mode toggle
+        // PC/Mobile toggle
         let isMobileMode = false;
 
         function toggleMode() {
             isMobileMode = !isMobileMode;
-            document.body.classList.toggle("mobile-mode");
+
+            document.body.classList.toggle(
+                "mobile-mode"
+            );
 
             const icon =
-                document.getElementById("modeIcon");
+                document.getElementById(
+                    "modeIcon"
+                );
 
             if (isMobileMode) {
-                icon.src = "root/pic/mobile.png";
+                icon.src =
+                    "root/pic/mobile.png";
             } else {
-                icon.src = "root/pic/pc.png";
+                icon.src =
+                    "root/pic/pc.png";
             }
         }
 
-        // ===== DAY / NIGHT TIMER =====
+        // ===== DAY/NIGHT TIMER =====
 
-        // Day + Noon = 7m 30s
         const DAY_LENGTH = 450;
-
-        // Night = 2m
         const NIGHT_LENGTH = 120;
-
-        // Full cycle
         const TOTAL_CYCLE =
             DAY_LENGTH + NIGHT_LENGTH;
 
-        // Day starts in ~20 sec right now
-        const cycleStart = new Date(
-            Date.now() - (NIGHT_LENGTH - 20) * 1000
-        );
+        // Night starts in ~15 sec
+        const cycleStart =
+            new Date(
+                Date.now() + 15000
+            );
 
         function updateCycleTimer() {
 
-            const now = new Date();
+            const now =
+                new Date();
 
             const elapsed =
-                (now - cycleStart) / 1000;
+                (now - cycleStart)
+                / 1000;
 
             const cycleTime =
-                ((elapsed % TOTAL_CYCLE)
-                + TOTAL_CYCLE)
-                % TOTAL_CYCLE;
+                (
+                    (
+                        elapsed %
+                        TOTAL_CYCLE
+                    )
+                    +
+                    TOTAL_CYCLE
+                )
+                %
+                TOTAL_CYCLE;
 
             const timer =
                 document.getElementById(
@@ -172,25 +182,36 @@
                 );
 
             // NIGHT
-            if (cycleTime < NIGHT_LENGTH) {
+            if (
+                cycleTime <
+                NIGHT_LENGTH
+            ) {
 
                 const remaining =
                     Math.ceil(
-                        NIGHT_LENGTH - cycleTime
+                        NIGHT_LENGTH
+                        -
+                        cycleTime
                     );
 
                 const mins =
-                    Math.floor(remaining / 60);
+                    Math.floor(
+                        remaining / 60
+                    );
 
                 const secs =
                     remaining % 60;
 
                 timer.innerHTML =
-                    `🌙 Night ends in: ${
+                    `🌙 Night • ${
                         mins
                     }:${
-                        secs.toString()
-                        .padStart(2, "0")
+                        secs
+                        .toString()
+                        .padStart(
+                            2,
+                            "0"
+                        )
                     }`;
             }
 
@@ -199,27 +220,38 @@
 
                 const remaining =
                     Math.ceil(
-                        TOTAL_CYCLE - cycleTime
+                        TOTAL_CYCLE
+                        -
+                        cycleTime
                     );
 
                 const mins =
-                    Math.floor(remaining / 60);
+                    Math.floor(
+                        remaining / 60
+                    );
 
                 const secs =
                     remaining % 60;
 
                 timer.innerHTML =
-                    `🌞 Day ends in: ${
+                    `🌞 Day • ${
                         mins
                     }:${
-                        secs.toString()
-                        .padStart(2, "0")
+                        secs
+                        .toString()
+                        .padStart(
+                            2,
+                            "0"
+                        )
                     }`;
             }
         }
 
         updateCycleTimer();
-        setInterval(updateCycleTimer, 1000);
+        setInterval(
+            updateCycleTimer,
+            1000
+        );
     </script>
 
 </body>
