@@ -1,13 +1,32 @@
 body {
     background-color: green;
     margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
+    overflow: hidden;
+    position: relative;
 }
 
+/* Logo higher up */
 .logo {
+    position: absolute;
+    top: 40px; /* move higher */
+    left: 50%;
+    transform: translateX(-50%);
     max-width: 400px;
     width: 80%;
+}
+
+/* Middle-left textbox */
+.textbox {
+    position: absolute;
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 300px;
+    padding: 12px;
+    font-size: 18px;
+
+    border: none;
+    border-radius: 10px;
 }
