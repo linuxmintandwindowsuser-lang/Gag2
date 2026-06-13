@@ -8,66 +8,43 @@
 
 <body>
 
-<!-- LOGO -->
 <img src="root/pic/logo.png" class="logo">
 
-<!-- TIMER -->
 <div id="cycleTimer" class="cycle-timer"></div>
 
-<!-- MAIN PANEL -->
 <div class="textpanel">
     This is a Gag 2 website one of the first<br>
     it will help with everything soon<br><br>
     <strong>TEAMGREENBEAN</strong>
 </div>
 
-<!-- BUTTONS -->
 <button class="codes-button" onclick="showCodes()">Codes</button>
 <button class="seeds-button" onclick="showSeeds()">Seeds</button>
 <button class="leaderboard-button" onclick="goLeaderboard()">Leaderboard</button>
 
-<!-- CODES POPUP -->
 <div id="codesGui" class="popup">
     <button class="close-button" onclick="hideCodes()">X</button>
-    <div class="popup-text">
-        TEAMGREENBEAN<br>
-        NOMORECODESYET
-    </div>
+    TEAMGREENBEAN<br>NOMORECODESYET
 </div>
 
-<!-- SEEDS POPUP -->
 <div id="seedsGui" class="popup">
     <button class="close-button" onclick="hideSeeds()">X</button>
-    <div class="popup-text">
-        Apple<br>Banana<br>Bamboo<br>Blueberry<br>Cactus<br>
-        Carrot<br>Coconut<br>Corn<br>Grape<br>Mango<br>
-        Mushroom<br>Pineapple<br>Pumpkin<br>Strawberry<br>
-        Tomato<br>Tulip<br>Acorn<br>Cherry<br>Green Bean<br>
-        Lotus<br>Beanstalk<br>Dragon's Breath<br>Moon Bloom<br>
-        Poison Apple<br>Pomegranate<br>Sunflower<br>Venus Fly Trap
-    </div>
+    Apple<br>Banana<br>Bamboo<br>Blueberry<br>Cactus<br>
+    Carrot<br>Coconut<br>Corn<br>Grape<br>Mango<br>
+    Mushroom<br>Pineapple<br>Pumpkin<br>Strawberry<br>
+    Tomato<br>Tulip<br>Acorn<br>Cherry<br>Green Bean<br>
+    Lotus<br>Beanstalk<br>Dragon's Breath<br>Moon Bloom<br>
+    Poison Apple<br>Pomegranate<br>Sunflower<br>Venus Fly Trap
 </div>
 
 <script>
 
-/* ================= POPUPS ================= */
-function showCodes(){
-    document.getElementById("codesGui").style.display="block";
-}
-function hideCodes(){
-    document.getElementById("codesGui").style.display="none";
-}
-
-function showSeeds(){
-    document.getElementById("seedsGui").style.display="block";
-}
-function hideSeeds(){
-    document.getElementById("seedsGui").style.display="none";
-}
-
-function goLeaderboard(){
-    window.location.href="https://gag.gg";
-}
+/* ================= UI ================= */
+function showCodes(){document.getElementById("codesGui").style.display="block";}
+function hideCodes(){document.getElementById("codesGui").style.display="none";}
+function showSeeds(){document.getElementById("seedsGui").style.display="block";}
+function hideSeeds(){document.getElementById("seedsGui").style.display="none";}
+function goLeaderboard(){window.location.href="https://gag.gg";}
 
 /* ================= TIMER ================= */
 
@@ -76,29 +53,38 @@ const NIGHT = 120;
 const TOTAL = DAY + NIGHT;
 
 /*
-🔥 IMPORTANT FIX:
-We anchor so that RIGHT NOW:
-➡ night starts in 90 seconds
-➡ cycle is consistent after refresh
+🔥 THE ONLY IMPORTANT VALUE:
+
+We define where we are RIGHT NOW in the cycle.
+
+Right now you said:
+➡️ night in ~8 minutes 12 seconds (or similar earlier states)
+
+So we store current position in cycle:
 */
-const cycleStart = Date.now() - ((TOTAL - 90) * 1000);
+
+const cyclePositionNow = 0; 
+// change ONLY if you want to shift alignment
 
 function updateTimer(){
 
-    const now = Date.now();
+    const now = new Date();
 
-    let t = ((now - cycleStart)/1000) % TOTAL;
+    const seconds =
+        now.getUTCHours()*3600 +
+        now.getUTCMinutes()*60 +
+        now.getUTCSeconds();
+
+    const t = (seconds + cyclePositionNow) % TOTAL;
 
     const el = document.getElementById("cycleTimer");
 
     if(t < NIGHT){
         let r = Math.ceil(NIGHT - t);
-        el.innerHTML =
-            `🌙 Night • ${Math.floor(r/60)}:${(r%60).toString().padStart(2,"0")}`;
+        el.innerHTML = `🌙 Night • ${Math.floor(r/60)}:${(r%60).toString().padStart(2,"0")}`;
     } else {
         let r = Math.ceil(TOTAL - t);
-        el.innerHTML =
-            `🌞 Day • ${Math.floor(r/60)}:${(r%60).toString().padStart(2,"0")}`;
+        el.innerHTML = `🌞 Day • ${Math.floor(r/60)}:${(r%60).toString().padStart(2,"0")}`;
     }
 }
 
