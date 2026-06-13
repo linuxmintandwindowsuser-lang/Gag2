@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grow A Garden 2 Page</title>
-    <link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grow A Garden 2 Page</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <img src="root/pic/logo.png" class="logo">
 
-<!-- TIMER -->
 <div id="cycleTimer" class="cycle-timer"></div>
 
 <div class="textpanel">
@@ -22,26 +22,19 @@
 <button class="seeds-button" onclick="showSeeds()">Seeds</button>
 <button class="leaderboard-button" onclick="goLeaderboard()">Leaderboard</button>
 
-<!-- CODES -->
 <div id="codesGui" class="popup">
     <button class="close-button" onclick="hideCodes()">X</button>
-    <div class="popup-text">
-        TEAMGREENBEAN<br>
-        NOMORECODESYET
-    </div>
+    TEAMGREENBEAN<br>NOMORECODESYET
 </div>
 
-<!-- SEEDS -->
 <div id="seedsGui" class="popup">
     <button class="close-button" onclick="hideSeeds()">X</button>
-    <div class="popup-text">
-        Apple<br>Banana<br>Bamboo<br>Blueberry<br>Cactus<br>
-        Carrot<br>Coconut<br>Corn<br>Grape<br>Mango<br>
-        Mushroom<br>Pineapple<br>Pumpkin<br>Strawberry<br>
-        Tomato<br>Tulip<br>Acorn<br>Cherry<br>Green Bean<br>
-        Lotus<br>Beanstalk<br>Dragon's Breath<br>Moon Bloom<br>
-        Poison Apple<br>Pomegranate<br>Sunflower<br>Venus Fly Trap
-    </div>
+    Apple<br>Banana<br>Bamboo<br>Blueberry<br>Cactus<br>
+    Carrot<br>Coconut<br>Corn<br>Grape<br>Mango<br>
+    Mushroom<br>Pineapple<br>Pumpkin<br>Strawberry<br>
+    Tomato<br>Tulip<br>Acorn<br>Cherry<br>Green Bean<br>
+    Lotus<br>Beanstalk<br>Dragon's Breath<br>Moon Bloom<br>
+    Poison Apple<br>Pomegranate<br>Sunflower<br>Venus Fly Trap
 </div>
 
 <script>
@@ -55,34 +48,34 @@ function goLeaderboard(){
     window.location.href="https://gag.gg";
 }
 
-/* =========================
-   TIMER (6:30 UNTIL NIGHT)
-========================= */
+// ===== STABLE CYCLE (REFRESH PROOF) =====
 
-// total cycle = 9:30 (570s)
 const DAY = 450;
 const NIGHT = 120;
 const TOTAL = DAY + NIGHT;
 
-/*
-We start the cycle so that:
-➡️ NIGHT begins in 6 minutes 30 seconds (390s)
-*/
-const cycleStart = Date.now() - ((TOTAL - 390) * 1000);
-
 function updateTimer(){
 
-    const now = Date.now();
-    let t = ((now - cycleStart)/1000) % TOTAL;
+    const now = new Date();
+
+    // stable UTC-based loop (NO offsets, NO resets)
+    const seconds =
+        now.getUTCHours()*3600 +
+        now.getUTCMinutes()*60 +
+        now.getUTCSeconds();
+
+    const t = seconds % TOTAL;
 
     const el = document.getElementById("cycleTimer");
 
     if(t < NIGHT){
         let r = Math.ceil(NIGHT - t);
-        el.innerHTML = `🌙 Night • ${Math.floor(r/60)}:${(r%60).toString().padStart(2,"0")}`;
+        el.innerHTML =
+            `🌙 Night • ${Math.floor(r/60)}:${(r%60).toString().padStart(2,"0")}`;
     } else {
         let r = Math.ceil(TOTAL - t);
-        el.innerHTML = `🌞 Day • ${Math.floor(r/60)}:${(r%60).toString().padStart(2,"0")}`;
+        el.innerHTML =
+            `🌞 Day • ${Math.floor(r/60)}:${(r%60).toString().padStart(2,"0")}`;
     }
 }
 
