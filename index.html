@@ -32,8 +32,8 @@
         <button class="close-button" onclick="hideCodes()">X</button>
         <div class="popup-text">
             TEAMGREENBEAN<br>
-            NOMORECODESYET<br><br>
-            JUNE 13 2026
+            NOMORECODESYET<br>
+            NOMORECODESYET
         </div>
     </div>
 
@@ -50,67 +50,42 @@
         </div>
     </div>
 
-    <!-- MODE BUTTON -->
-    <button class="mode-button" onclick="toggleMode()">
-        <img id="modeIcon" src="root/pic/pc.png">
-    </button>
-
 <script>
-/* =========================
-   POPUPS
-========================= */
+// ================= POPUPS =================
+function showCodes(){ document.getElementById("codesGui").style.display="block"; }
+function hideCodes(){ document.getElementById("codesGui").style.display="none"; }
 
-function showCodes(){
-    document.getElementById("codesGui").style.display="block";
-}
-function hideCodes(){
-    document.getElementById("codesGui").style.display="none";
-}
-
-function showSeeds(){
-    document.getElementById("seedsGui").style.display="block";
-}
-function hideSeeds(){
-    document.getElementById("seedsGui").style.display="none";
-}
+function showSeeds(){ document.getElementById("seedsGui").style.display="block"; }
+function hideSeeds(){ document.getElementById("seedsGui").style.display="none"; }
 
 function goLeaderboard(){
     window.location.href="https://gag.gg";
 }
 
-/* =========================
-   MODE TOGGLE
-========================= */
+// ================= TIMER =================
 
-let mobile=false;
-
-function toggleMode(){
-    mobile=!mobile;
-    document.body.classList.toggle("mobile-mode");
-
-    document.getElementById("modeIcon").src =
-        mobile ? "root/pic/mobile.png" : "root/pic/pc.png";
-}
-
-/* =========================
-   DAY / NIGHT TIMER
-========================= */
-
-const DAY = 450;   // 7m 30s
-const NIGHT = 120;  // 2m
+// 7m30s day, 2m night
+const DAY = 450;
+const NIGHT = 120;
 const TOTAL = DAY + NIGHT;
 
 /*
-ANCHOR RULE:
-We set cycle start so that NIGHT begins in ~6 minutes from NOW.
-This is the ONLY correct stable method without backend.
+REAL FIX:
+We base cycle ONLY on current UTC seconds in the day.
+No stored start time = no reset bugs.
 */
-const cycleStart = Date.now() - ((TOTAL - 360) * 1000);
-
 function updateTimer(){
 
-    const now = Date.now();
-    let t = ((now - cycleStart)/1000) % TOTAL;
+    const now = new Date();
+
+    // seconds in current UTC day
+    const secondsToday =
+        now.getUTCHours() * 3600 +
+        now.getUTCMinutes() * 60 +
+        now.getUTCSeconds();
+
+    // loop cycle forever
+    const t = secondsToday % TOTAL;
 
     const el = document.getElementById("cycleTimer");
 
