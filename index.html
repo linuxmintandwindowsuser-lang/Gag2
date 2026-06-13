@@ -7,9 +7,9 @@
 <body>
 
     <!-- Logo -->
-    <img src="root/pic/logo.png" alt="GAG 2 Logo" class="logo">
+    <img src="root/pic/logo.png" class="logo">
 
-    <!-- Main text box -->
+    <!-- Main panel -->
     <div class="textpanel">
         This is a Gag 2 website one of the first<br>
         it will help with everything soon<br>
@@ -23,26 +23,46 @@
         Codes
     </button>
 
-    <!-- Popup -->
+    <!-- Seeds button -->
+    <button class="seeds-button" onclick="showSeeds()">
+        Seeds
+    </button>
+
+    <!-- CODES POPUP -->
     <div id="codesGui" class="popup">
 
-        <button class="close-button" onclick="hideCodes()">
-            X
-        </button>
+        <button class="close-button" onclick="hideCodes()">X</button>
 
-    <div class="popup-text">
-    <strong>Current Codes</strong><br><br>
+        <div class="popup-text">
+            <strong>Codes</strong><br><br>
 
-    TEAMGREENBEAN<br>
-    NOMORECODESYET<br>
-    NOMORECODESYET<br><br>
+            TEAMGREENBEAN<br>
+            NOMORECODESYET<br>
+            NOMORECODESYET<br><br>
 
-    <strong>Last Updated:</strong><br>
-    JUNE 12 2026
-</div>
+            <strong>Last Updated:</strong><br>
+            JUNE 12 2026
+        </div>
 
     </div>
 
+    <!-- SEEDS POPUP -->
+    <div id="seedsGui" class="popup">
+
+        <button class="close-button" onclick="hideSeeds()">X</button>
+
+        <div class="popup-text">
+            <strong>Seeds</strong><br><br>
+
+            AppleBananaBambooBlueberryCactusCarrotCoconutCornGrapeMangoMushroomPineapplePumpkinStrawberryTomatoTulipAcornCherryGreenBeanLotusBeanstalkDragonsBreathMoonBloomPoisonApplePomegranateSunflowerVenusFlyTrap<br><br>
+
+            <strong>Created:</strong><br>
+            JUNE 12 2026
+        </div>
+
+    </div>
+
+    <!-- SCRIPT -->
     <script>
         function showCodes() {
             document.getElementById("codesGui").style.display = "block";
@@ -50,6 +70,14 @@
 
         function hideCodes() {
             document.getElementById("codesGui").style.display = "none";
+        }
+
+        function showSeeds() {
+            document.getElementById("seedsGui").style.display = "block";
+        }
+
+        function hideSeeds() {
+            document.getElementById("seedsGui").style.display = "none";
         }
     </script>
 
