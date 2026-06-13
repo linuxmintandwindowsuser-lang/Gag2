@@ -20,7 +20,7 @@ body {
     width: min(80%, 400px);
 }
 
-/* MAIN TEXT PANEL */
+/* MAIN PANEL */
 .textpanel {
     position: absolute;
     left: 40px;
@@ -44,7 +44,6 @@ body {
     left: 40px;
 
     width: 140px;
-    max-width: 80vw;
 
     background: white;
     border: none;
@@ -63,7 +62,7 @@ body {
     top: calc(50% + 230px);
 }
 
-/* POPUP BOX */
+/* POPUP */
 .popup {
     display: none;
 
@@ -106,31 +105,44 @@ body {
     cursor: pointer;
 }
 
+/* MODE BUTTON */
+.mode-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+
+    width: 60px;
+    height: 60px;
+
+    border: none;
+    border-radius: 15px;
+    background: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+}
+
+.mode-button img {
+    width: 35px;
+    height: 35px;
+}
+
 /* MOBILE MODE */
-@media (max-width: 600px) {
+body.mobile-mode .textpanel {
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+}
 
-    .textpanel {
-        left: 50%;
-        transform: translate(-50%, -50%);
-        top: 55%;
-        width: 90%;
-    }
+body.mobile-mode .codes-button,
+body.mobile-mode .seeds-button {
+    left: 50%;
+    transform: translateX(-50%);
+}
 
-    .codes-button,
-    .seeds-button {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .codes-button {
-        top: calc(55% + 160px);
-    }
-
-    .seeds-button {
-        top: calc(55% + 220px);
-    }
-
-    .popup {
-        width: 90%;
-    }
+body.mobile-mode .popup {
+    width: 90%;
 }
