@@ -1,258 +1,168 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grow A Garden 2 Page</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+* {
+    box-sizing: border-box;
+}
 
-    <!-- Logo -->
-    <img src="root/pic/logo.png" class="logo">
+body {
+    background-color: #6fd07a;
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    font-family: Arial, sans-serif;
+}
 
-    <!-- Day/Night Timer -->
-    <div id="cycleTimer" class="cycle-timer">
-        Loading timer...
-    </div>
+/* LOGO */
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(80%, 400px);
+}
 
-    <!-- Main panel -->
-    <div class="textpanel">
-        This is a Gag 2 website one of the first<br>
-        it will help with everything soon<br>
-        BTW here is a code<br><br>
+/* TIMER */
+.cycle-timer {
+    position: absolute;
 
-        <strong>TEAMGREENBEAN</strong>
-    </div>
+    top: 180px;
+    left: 50%;
+    transform: translateX(-50%);
 
-    <!-- Buttons -->
-    <button class="codes-button" onclick="showCodes()">
-        Codes
-    </button>
+    background: rgba(255,255,255,0.5);
 
-    <button class="seeds-button" onclick="showSeeds()">
-        Seeds
-    </button>
+    padding: 14px 24px;
 
-    <button class="leaderboard-button" onclick="goLeaderboard()">
-        Leaderboard
-    </button>
+    border-radius: 18px;
 
-    <!-- Codes popup -->
-    <div id="codesGui" class="popup">
-        <button class="close-button" onclick="hideCodes()">X</button>
+    font-size: 22px;
+    font-weight: bold;
 
-        <div class="popup-text">
-            <strong>Codes</strong><br><br>
+    text-align: center;
+}
 
-            TEAMGREENBEAN<br>
-            NOMORECODESYET<br>
-            NOMORECODESYET<br><br>
+/* MAIN PANEL */
+.textpanel {
+    position: absolute;
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%);
 
-            <strong>Last Updated:</strong><br>
-            JUNE 12 2026
-        </div>
-    </div>
+    width: min(360px, 85vw);
+    padding: 20px;
 
-    <!-- Seeds popup -->
-    <div id="seedsGui" class="popup">
-        <button class="close-button" onclick="hideSeeds()">X</button>
+    background: rgba(255,255,255,0.5);
+    border-radius: 15px;
 
-        <div class="popup-text">
-            <strong>Seeds</strong><br><br>
+    font-size: 18px;
+    line-height: 1.6;
+}
 
-            Apple<br>
-            Banana<br>
-            Bamboo<br>
-            Blueberry<br>
-            Cactus<br>
-            Carrot<br>
-            Coconut<br>
-            Corn<br>
-            Grape<br>
-            Mango<br>
-            Mushroom<br>
-            Pineapple<br>
-            Pumpkin<br>
-            Strawberry<br>
-            Tomato<br>
-            Tulip<br>
-            Acorn<br>
-            Cherry<br>
-            Green Bean<br>
-            Lotus<br>
-            Beanstalk<br>
-            Dragon's Breath<br>
-            Moon Bloom<br>
-            Poison Apple<br>
-            Pomegranate<br>
-            Sunflower<br>
-            Venus Fly Trap
-        </div>
-    </div>
+/* BUTTONS */
+.codes-button,
+.seeds-button,
+.leaderboard-button {
+    position: absolute;
+    left: 40px;
 
-    <!-- Mode Button -->
-    <button class="mode-button" onclick="toggleMode()">
-        <img id="modeIcon" src="root/pic/pc.png">
-    </button>
+    width: 140px;
 
-    <script>
-        // Popups
-        function showCodes() {
-            document.getElementById("codesGui").style.display = "block";
-        }
+    background: white;
+    border: none;
+    border-radius: 15px;
 
-        function hideCodes() {
-            document.getElementById("codesGui").style.display = "none";
-        }
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
 
-        function showSeeds() {
-            document.getElementById("seedsGui").style.display = "block";
-        }
+.codes-button {
+    top: calc(50% + 170px);
+}
 
-        function hideSeeds() {
-            document.getElementById("seedsGui").style.display = "none";
-        }
+.seeds-button {
+    top: calc(50% + 230px);
+}
 
-        // Leaderboard
-        function goLeaderboard() {
-            window.location.href = "https://gag.gg";
-        }
+.leaderboard-button {
+    top: calc(50% + 290px);
+}
 
-        // PC/Mobile toggle
-        let isMobileMode = false;
+/* POPUP */
+.popup {
+    display: none;
 
-        function toggleMode() {
-            isMobileMode = !isMobileMode;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
-            document.body.classList.toggle(
-                "mobile-mode"
-            );
+    width: 420px;
+    max-width: 90vw;
+    padding: 20px;
 
-            const icon =
-                document.getElementById(
-                    "modeIcon"
-                );
+    background: white;
+    border: 3px solid black;
+    border-radius: 20px;
+}
 
-            if (isMobileMode) {
-                icon.src =
-                    "root/pic/mobile.png";
-            } else {
-                icon.src =
-                    "root/pic/pc.png";
-            }
-        }
+.popup-text {
+    font-size: 18px;
+    line-height: 1.6;
+}
 
-        // ===== DAY/NIGHT TIMER =====
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
 
-        const DAY_LENGTH = 450;
-        const NIGHT_LENGTH = 120;
-        const TOTAL_CYCLE =
-            DAY_LENGTH + NIGHT_LENGTH;
+    width: 40px;
+    height: 40px;
 
-        // Night starts in ~15 sec
-        const cycleStart =
-            new Date(
-                Date.now() + 15000
-            );
+    background: red;
+    color: white;
 
-        function updateCycleTimer() {
+    border: none;
+    border-radius: 10px;
 
-            const now =
-                new Date();
+    font-size: 20px;
+    cursor: pointer;
+}
 
-            const elapsed =
-                (now - cycleStart)
-                / 1000;
+/* MODE BUTTON */
+.mode-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
 
-            const cycleTime =
-                (
-                    (
-                        elapsed %
-                        TOTAL_CYCLE
-                    )
-                    +
-                    TOTAL_CYCLE
-                )
-                %
-                TOTAL_CYCLE;
+    width: 60px;
+    height: 60px;
 
-            const timer =
-                document.getElementById(
-                    "cycleTimer"
-                );
+    border: none;
+    border-radius: 15px;
+    background: white;
 
-            // NIGHT
-            if (
-                cycleTime <
-                NIGHT_LENGTH
-            ) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-                const remaining =
-                    Math.ceil(
-                        NIGHT_LENGTH
-                        -
-                        cycleTime
-                    );
+    cursor: pointer;
+}
 
-                const mins =
-                    Math.floor(
-                        remaining / 60
-                    );
+.mode-button img {
+    width: 35px;
+    height: 35px;
+}
 
-                const secs =
-                    remaining % 60;
+/* MOBILE MODE */
+body.mobile-mode .textpanel {
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+}
 
-                timer.innerHTML =
-                    `🌙 Night • ${
-                        mins
-                    }:${
-                        secs
-                        .toString()
-                        .padStart(
-                            2,
-                            "0"
-                        )
-                    }`;
-            }
-
-            // DAY
-            else {
-
-                const remaining =
-                    Math.ceil(
-                        TOTAL_CYCLE
-                        -
-                        cycleTime
-                    );
-
-                const mins =
-                    Math.floor(
-                        remaining / 60
-                    );
-
-                const secs =
-                    remaining % 60;
-
-                timer.innerHTML =
-                    `🌞 Day • ${
-                        mins
-                    }:${
-                        secs
-                        .toString()
-                        .padStart(
-                            2,
-                            "0"
-                        )
-                    }`;
-            }
-        }
-
-        updateCycleTimer();
-        setInterval(
-            updateCycleTimer,
-            1000
-        );
-    </script>
-
-</body>
-</html>
+body.mobile-mode .codes-button,
+body.mobile-mode .seeds-button,
+body.mobile-mode .leaderboard-button {
+    left: 50%;
+    transform: translateX(-50%);
+}
