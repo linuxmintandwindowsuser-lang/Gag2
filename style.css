@@ -1,129 +1,133 @@
-*{
-    box-sizing:border-box;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grow A Garden 2 Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- LOGO -->
+    <img src="root/pic/logo.png" class="logo">
+
+    <!-- TIMER -->
+    <div id="cycleTimer" class="cycle-timer">
+        Loading...
+    </div>
+
+    <!-- MAIN PANEL -->
+    <div class="textpanel">
+        This is a Gag 2 website one of the first<br>
+        it will help with everything soon<br><br>
+        <strong>TEAMGREENBEAN</strong>
+    </div>
+
+    <!-- BUTTONS -->
+    <button class="codes-button" onclick="showCodes()">Codes</button>
+    <button class="seeds-button" onclick="showSeeds()">Seeds</button>
+    <button class="leaderboard-button" onclick="goLeaderboard()">Leaderboard</button>
+
+    <!-- CODES -->
+    <div id="codesGui" class="popup">
+        <button class="close-button" onclick="hideCodes()">X</button>
+        <div class="popup-text">
+            TEAMGREENBEAN<br>
+            NOMORECODESYET<br><br>
+            JUNE 13 2026
+        </div>
+    </div>
+
+    <!-- SEEDS -->
+    <div id="seedsGui" class="popup">
+        <button class="close-button" onclick="hideSeeds()">X</button>
+        <div class="popup-text">
+            Apple<br>Banana<br>Bamboo<br>Blueberry<br>Cactus<br>
+            Carrot<br>Coconut<br>Corn<br>Grape<br>Mango<br>
+            Mushroom<br>Pineapple<br>Pumpkin<br>Strawberry<br>
+            Tomato<br>Tulip<br>Acorn<br>Cherry<br>Green Bean<br>
+            Lotus<br>Beanstalk<br>Dragon's Breath<br>Moon Bloom<br>
+            Poison Apple<br>Pomegranate<br>Sunflower<br>Venus Fly Trap
+        </div>
+    </div>
+
+    <!-- MODE BUTTON -->
+    <button class="mode-button" onclick="toggleMode()">
+        <img id="modeIcon" src="root/pic/pc.png">
+    </button>
+
+<script>
+/* =========================
+   POPUPS
+========================= */
+
+function showCodes(){
+    document.getElementById("codesGui").style.display="block";
+}
+function hideCodes(){
+    document.getElementById("codesGui").style.display="none";
 }
 
-body{
-    margin:0;
-    min-height:100vh;
-    background:#6fd07a;
-    font-family:Arial;
-    overflow-x:hidden;
+function showSeeds(){
+    document.getElementById("seedsGui").style.display="block";
+}
+function hideSeeds(){
+    document.getElementById("seedsGui").style.display="none";
 }
 
-/* LOGO */
-.logo{
-    position:absolute;
-    top:20px;
-    left:50%;
-    transform:translateX(-50%);
-    width:min(80%,400px);
+function goLeaderboard(){
+    window.location.href="https://gag.gg";
 }
 
-/* TIMER (FIXED UNDER LOGO) */
-.cycle-timer{
-    position:absolute;
-    top:180px;
-    left:50%;
-    transform:translateX(-50%);
+/* =========================
+   MODE TOGGLE
+========================= */
 
-    background:rgba(255,255,255,0.5);
-    padding:14px 24px;
-    border-radius:18px;
+let mobile=false;
 
-    font-size:22px;
-    font-weight:bold;
+function toggleMode(){
+    mobile=!mobile;
+    document.body.classList.toggle("mobile-mode");
+
+    document.getElementById("modeIcon").src =
+        mobile ? "root/pic/mobile.png" : "root/pic/pc.png";
 }
 
-/* MAIN PANEL */
-.textpanel{
-    position:absolute;
-    left:40px;
-    top:50%;
-    transform:translateY(-50%);
+/* =========================
+   DAY / NIGHT TIMER
+========================= */
 
-    width:min(360px,85vw);
-    padding:20px;
+const DAY = 450;   // 7m 30s
+const NIGHT = 120;  // 2m
+const TOTAL = DAY + NIGHT;
 
-    background:rgba(255,255,255,0.5);
-    border-radius:15px;
-    font-size:18px;
+/*
+ANCHOR RULE:
+We set cycle start so that NIGHT begins in ~6 minutes from NOW.
+This is the ONLY correct stable method without backend.
+*/
+const cycleStart = Date.now() - ((TOTAL - 360) * 1000);
+
+function updateTimer(){
+
+    const now = Date.now();
+    let t = ((now - cycleStart)/1000) % TOTAL;
+
+    const el = document.getElementById("cycleTimer");
+
+    if(t < NIGHT){
+        let r = Math.ceil(NIGHT - t);
+        el.innerHTML =
+            `🌙 Night • ${Math.floor(r/60)}:${(r%60).toString().padStart(2,"0")}`;
+    } else {
+        let r = Math.ceil(TOTAL - t);
+        el.innerHTML =
+            `🌞 Day • ${Math.floor(r/60)}:${(r%60).toString().padStart(2,"0")}`;
+    }
 }
 
-/* BUTTONS */
-.codes-button,
-.seeds-button,
-.leaderboard-button{
-    position:absolute;
-    left:40px;
-    width:140px;
-    background:white;
-    border:none;
-    border-radius:15px;
-    padding:10px;
-    font-size:18px;
-    cursor:pointer;
-}
+updateTimer();
+setInterval(updateTimer,1000);
+</script>
 
-.codes-button{ top:calc(50% + 170px); }
-.seeds-button{ top:calc(50% + 230px); }
-.leaderboard-button{ top:calc(50% + 290px); }
-
-/* POPUP */
-.popup{
-    display:none;
-    position:fixed;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    width:420px;
-    max-width:90vw;
-    background:white;
-    border:3px solid black;
-    border-radius:20px;
-    padding:20px;
-}
-
-/* CLOSE */
-.close-button{
-    position:absolute;
-    top:10px;
-    right:10px;
-    width:40px;
-    height:40px;
-    background:red;
-    color:white;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
-}
-
-/* MODE BUTTON */
-.mode-button{
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    width:60px;
-    height:60px;
-    background:white;
-    border:none;
-    border-radius:15px;
-    cursor:pointer;
-}
-
-.mode-button img{
-    width:35px;
-}
-
-/* MOBILE MODE */
-body.mobile-mode .textpanel{
-    left:50%;
-    transform:translate(-50%,-50%);
-    width:90%;
-}
-
-body.mobile-mode .codes-button,
-body.mobile-mode .seeds-button,
-body.mobile-mode .leaderboard-button{
-    left:50%;
-    transform:translateX(-50%);
-}
+</body>
+</html>
