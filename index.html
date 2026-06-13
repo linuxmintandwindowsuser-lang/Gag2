@@ -7,15 +7,15 @@
 </head>
 <body>
 
-    <!-- Logo -->
+    <!-- LOGO -->
     <img src="root/pic/logo.png" class="logo">
 
-    <!-- Day/Night Timer -->
+    <!-- TIMER (UNDER LOGO) -->
     <div id="cycleTimer" class="cycle-timer">
-        Loading timer...
+        Loading...
     </div>
 
-    <!-- Main panel -->
+    <!-- MAIN PANEL -->
     <div class="textpanel">
         This is a Gag 2 website one of the first<br>
         it will help with everything soon<br>
@@ -24,234 +24,92 @@
         <strong>TEAMGREENBEAN</strong>
     </div>
 
-    <!-- Buttons -->
-    <button class="codes-button" onclick="showCodes()">
-        Codes
-    </button>
+    <!-- BUTTONS -->
+    <button class="codes-button" onclick="showCodes()">Codes</button>
+    <button class="seeds-button" onclick="showSeeds()">Seeds</button>
+    <button class="leaderboard-button" onclick="goLeaderboard()">Leaderboard</button>
 
-    <button class="seeds-button" onclick="showSeeds()">
-        Seeds
-    </button>
-
-    <button class="leaderboard-button" onclick="goLeaderboard()">
-        Leaderboard
-    </button>
-
-    <!-- Codes popup -->
+    <!-- CODES POPUP -->
     <div id="codesGui" class="popup">
         <button class="close-button" onclick="hideCodes()">X</button>
-
         <div class="popup-text">
             <strong>Codes</strong><br><br>
-
             TEAMGREENBEAN<br>
             NOMORECODESYET<br>
             NOMORECODESYET<br><br>
-
             <strong>Last Updated:</strong><br>
-            JUNE 12 2026
+            JUNE 13 2026
         </div>
     </div>
 
-    <!-- Seeds popup -->
+    <!-- SEEDS POPUP -->
     <div id="seedsGui" class="popup">
         <button class="close-button" onclick="hideSeeds()">X</button>
-
         <div class="popup-text">
             <strong>Seeds</strong><br><br>
-
-            Apple<br>
-            Banana<br>
-            Bamboo<br>
-            Blueberry<br>
-            Cactus<br>
-            Carrot<br>
-            Coconut<br>
-            Corn<br>
-            Grape<br>
-            Mango<br>
-            Mushroom<br>
-            Pineapple<br>
-            Pumpkin<br>
-            Strawberry<br>
-            Tomato<br>
-            Tulip<br>
-            Acorn<br>
-            Cherry<br>
-            Green Bean<br>
-            Lotus<br>
-            Beanstalk<br>
-            Dragon's Breath<br>
-            Moon Bloom<br>
-            Poison Apple<br>
-            Pomegranate<br>
-            Sunflower<br>
-            Venus Fly Trap
+            Apple<br>Banana<br>Bamboo<br>Blueberry<br>Cactus<br>Carrot<br>
+            Coconut<br>Corn<br>Grape<br>Mango<br>Mushroom<br>Pineapple<br>
+            Pumpkin<br>Strawberry<br>Tomato<br>Tulip<br>Acorn<br>Cherry<br>
+            Green Bean<br>Lotus<br>Beanstalk<br>Dragon's Breath<br>Moon Bloom<br>
+            Poison Apple<br>Pomegranate<br>Sunflower<br>Venus Fly Trap
         </div>
     </div>
 
-    <!-- Mode Button -->
+    <!-- MODE BUTTON -->
     <button class="mode-button" onclick="toggleMode()">
         <img id="modeIcon" src="root/pic/pc.png">
     </button>
 
     <script>
-        // Popups
-        function showCodes() {
-            document.getElementById("codesGui").style.display = "block";
+        // POPUPS
+        function showCodes(){ document.getElementById("codesGui").style.display="block"; }
+        function hideCodes(){ document.getElementById("codesGui").style.display="none"; }
+
+        function showSeeds(){ document.getElementById("seedsGui").style.display="block"; }
+        function hideSeeds(){ document.getElementById("seedsGui").style.display="none"; }
+
+        function goLeaderboard(){
+            window.location.href="https://gag.gg";
         }
 
-        function hideCodes() {
-            document.getElementById("codesGui").style.display = "none";
+        // MODE TOGGLE
+        let isMobileMode=false;
+        function toggleMode(){
+            isMobileMode=!isMobileMode;
+            document.body.classList.toggle("mobile-mode");
+            document.getElementById("modeIcon").src =
+                isMobileMode ? "root/pic/mobile.png" : "root/pic/pc.png";
         }
 
-        function showSeeds() {
-            document.getElementById("seedsGui").style.display = "block";
-        }
-
-        function hideSeeds() {
-            document.getElementById("seedsGui").style.display = "none";
-        }
-
-        // Leaderboard
-        function goLeaderboard() {
-            window.location.href = "https://gag.gg";
-        }
-
-        // PC/Mobile toggle
-        let isMobileMode = false;
-
-        function toggleMode() {
-            isMobileMode = !isMobileMode;
-
-            document.body.classList.toggle(
-                "mobile-mode"
-            );
-
-            const icon =
-                document.getElementById(
-                    "modeIcon"
-                );
-
-            if (isMobileMode) {
-                icon.src =
-                    "root/pic/mobile.png";
-            } else {
-                icon.src =
-                    "root/pic/pc.png";
-            }
-        }
-
-        // ===== DAY/NIGHT TIMER =====
+        // ===== FIXED DAY/NIGHT SYSTEM =====
 
         const DAY_LENGTH = 450;
         const NIGHT_LENGTH = 120;
-        const TOTAL_CYCLE =
-            DAY_LENGTH + NIGHT_LENGTH;
+        const TOTAL = DAY_LENGTH + NIGHT_LENGTH;
 
-        // Night starts in ~15 sec
-        const cycleStart =
-            new Date(
-                Date.now() + 15000
-            );
+        // IMPORTANT FIX:
+        // anchor based on REAL cycle start (not Date.now offset)
+        // set this once when you saw NIGHT start
+        const cycleStart = Date.now() - (TOTAL - 15) * 1000;
 
-        function updateCycleTimer() {
+        function updateTimer(){
 
-            const now =
-                new Date();
+            const now = Date.now();
+            let t = ((now - cycleStart)/1000) % TOTAL;
 
-            const elapsed =
-                (now - cycleStart)
-                / 1000;
+            const el = document.getElementById("cycleTimer");
 
-            const cycleTime =
-                (
-                    (
-                        elapsed %
-                        TOTAL_CYCLE
-                    )
-                    +
-                    TOTAL_CYCLE
-                )
-                %
-                TOTAL_CYCLE;
-
-            const timer =
-                document.getElementById(
-                    "cycleTimer"
-                );
-
-            // NIGHT
-            if (
-                cycleTime <
-                NIGHT_LENGTH
-            ) {
-
-                const remaining =
-                    Math.ceil(
-                        NIGHT_LENGTH
-                        -
-                        cycleTime
-                    );
-
-                const mins =
-                    Math.floor(
-                        remaining / 60
-                    );
-
-                const secs =
-                    remaining % 60;
-
-                timer.innerHTML =
-                    `🌙 Night • ${
-                        mins
-                    }:${
-                        secs
-                        .toString()
-                        .padStart(
-                            2,
-                            "0"
-                        )
-                    }`;
-            }
-
-            // DAY
-            else {
-
-                const remaining =
-                    Math.ceil(
-                        TOTAL_CYCLE
-                        -
-                        cycleTime
-                    );
-
-                const mins =
-                    Math.floor(
-                        remaining / 60
-                    );
-
-                const secs =
-                    remaining % 60;
-
-                timer.innerHTML =
-                    `🌞 Day • ${
-                        mins
-                    }:${
-                        secs
-                        .toString()
-                        .padStart(
-                            2,
-                            "0"
-                        )
-                    }`;
+            if(t < NIGHT_LENGTH){
+                let r = Math.ceil(NIGHT_LENGTH - t);
+                el.innerHTML = `🌙 Night • ${Math.floor(r/60)}:${(r%60).toString().padStart(2,"0")}`;
+            } else {
+                let r = Math.ceil(TOTAL - t);
+                el.innerHTML = `🌞 Day • ${Math.floor(r/60)}:${(r%60).toString().padStart(2,"0")}`;
             }
         }
 
-        updateCycleTimer();
-        setInterval(
-            updateCycleTimer,
-            1000
-        );
+        updateTimer();
+        setInterval(updateTimer,1000);
     </script>
 
 </body>
