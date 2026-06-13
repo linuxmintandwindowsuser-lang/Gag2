@@ -1,51 +1,57 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     background-color: #6fd07a;
     margin: 0;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
+    overflow-x: hidden;
     position: relative;
     font-family: Arial, sans-serif;
 }
 
-/* Logo */
+/* LOGO */
 .logo {
     position: absolute;
-    top: 30px;
+    top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    max-width: 400px;
-    width: 80%;
+    width: min(80%, 400px);
 }
 
-/* Main text box */
+/* MAIN TEXT PANEL */
 .textpanel {
     position: absolute;
     left: 40px;
     top: 50%;
     transform: translateY(-50%);
 
-    width: 360px;
+    width: min(360px, 85vw);
     padding: 20px;
 
     background: rgba(255,255,255,0.5);
     border-radius: 15px;
 
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1.6;
 }
 
-/* Buttons */
+/* BUTTONS */
 .codes-button,
 .seeds-button {
     position: absolute;
     left: 40px;
 
+    width: 140px;
+    max-width: 80vw;
+
     background: white;
     border: none;
     border-radius: 15px;
 
-    padding: 12px 30px;
-    font-size: 20px;
+    padding: 10px;
+    font-size: 18px;
     cursor: pointer;
 }
 
@@ -54,7 +60,7 @@ body {
 }
 
 .seeds-button {
-    top: calc(50% + 240px);
+    top: calc(50% + 230px);
 }
 
 /* POPUP BOX */
@@ -67,6 +73,7 @@ body {
     transform: translate(-50%, -50%);
 
     width: 420px;
+    max-width: 90vw;
     padding: 20px;
 
     background: white;
@@ -74,13 +81,13 @@ body {
     border-radius: 20px;
 }
 
-/* TEXT INSIDE POPUP */
+/* POPUP TEXT */
 .popup-text {
     font-size: 18px;
     line-height: 1.6;
 }
 
-/* RED X BUTTON */
+/* CLOSE BUTTON */
 .close-button {
     position: absolute;
     top: 10px;
@@ -97,4 +104,33 @@ body {
 
     font-size: 20px;
     cursor: pointer;
+}
+
+/* MOBILE MODE */
+@media (max-width: 600px) {
+
+    .textpanel {
+        left: 50%;
+        transform: translate(-50%, -50%);
+        top: 55%;
+        width: 90%;
+    }
+
+    .codes-button,
+    .seeds-button {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .codes-button {
+        top: calc(55% + 160px);
+    }
+
+    .seeds-button {
+        top: calc(55% + 220px);
+    }
+
+    .popup {
+        width: 90%;
+    }
 }
