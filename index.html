@@ -6,8 +6,10 @@
 </head>
 <body>
 
+    <!-- Logo -->
     <img src="root/pic/logo.png" alt="GAG 2 Logo" class="logo">
 
+    <!-- Main textbox -->
     <div class="textpanel">
         This is a Gag 2 website one of the first<br>
         it will help with everything soon<br>
@@ -15,6 +17,33 @@
 
         <strong>TEAMGREENBEAN</strong>
     </div>
+
+    <!-- Codes button -->
+    <button class="codes-button" onclick="openCodes()">
+        Codes
+    </button>
+
+    <!-- Popup GUI -->
+    <div class="popup" id="codesPopup">
+
+        <!-- Red X button -->
+        <button class="close-button" onclick="closeCodes()">
+            X
+        </button>
+
+        <div class="popup-content">
+            <h2>Codes</h2>
+
+            Placeholder line 1<br>
+            Placeholder line 2<br>
+            Placeholder line 3<br><br>
+
+            <strong>EXAMPLECODE</strong>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
 
 </body>
 </html>
