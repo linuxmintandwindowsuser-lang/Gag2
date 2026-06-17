@@ -8,21 +8,25 @@ body {
 
 /* LOGO */
 .logo {
-    display: block;
-    margin: 30px auto;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 300px;
     max-width: 80%;
 }
 
 /* MAIN PANEL */
 .textpanel {
+    position: absolute;
+    top: 180px;
+    left: 40px;
+
     background: rgba(255,255,255,0.5);
     border-radius: 20px;
     padding: 20px;
-    width: 420px;
-    max-width: 85%;
-    margin: auto;
-    text-align: center;
+    width: 350px;
+
     font-size: 20px;
 }
 
@@ -31,29 +35,39 @@ body {
 .seeds-button,
 .leaderboard-button,
 .pictures-button {
-    display: block;
-    width: 220px;
-    margin: 15px auto;
-    padding: 14px;
+    position: absolute;
+    left: 40px;
+
+    width: 180px;
+    padding: 12px;
 
     border: none;
-    border-radius: 20px;
+    border-radius: 18px;
     background: white;
 
     font-size: 20px;
     cursor: pointer;
-
-    transition: transform 0.15s;
 }
 
-.codes-button:hover,
-.seeds-button:hover,
-.leaderboard-button:hover,
-.pictures-button:hover {
-    transform: scale(1.05);
+/* Original layout */
+.codes-button {
+    top: 430px;
 }
 
-/* POPUP GUI */
+.seeds-button {
+    top: 500px;
+}
+
+.leaderboard-button {
+    top: 570px;
+}
+
+/* NEW Pictures button */
+.pictures-button {
+    top: 640px;
+}
+
+/* POPUPS */
 .popup {
     display: none;
 
@@ -68,14 +82,12 @@ body {
 
     overflow-y: auto;
 
-    background: rgba(255,255,255,0.96);
-
-    border: 3px solid black;
+    background: rgba(255,255,255,0.95);
     border-radius: 20px;
+    border: 3px solid black;
 
     padding: 20px;
     text-align: center;
-
     z-index: 999;
 }
 
@@ -109,7 +121,7 @@ body {
     max-width: 250px;
 
     border-radius: 12px;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
 /* MODE BUTTON */
@@ -123,8 +135,8 @@ body {
 
     border: none;
     border-radius: 20px;
-
     background: white;
+
     cursor: pointer;
 }
 
@@ -138,7 +150,7 @@ body {
 }
 
 .mobile-mode .textpanel {
-    width: 90%;
+    width: 250px;
     font-size: 18px;
 }
 
