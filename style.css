@@ -183,9 +183,11 @@ body {
 
 /* BACK BUTTON */
 .back-button {
-    position: absolute;
-    top: 20px;
+    position: fixed;
+
     left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
 
     width: 120px;
     padding: 12px;
@@ -196,8 +198,9 @@ body {
 
     font-size: 18px;
     cursor: pointer;
-}
 
+    z-index: 1000;
+}
 /* FORUM PAGE */
 .forum-container {
     max-width: 900px;
