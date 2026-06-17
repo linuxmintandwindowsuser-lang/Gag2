@@ -1,74 +1,59 @@
-* {
-    box-sizing: border-box;
-}
-
+/* BODY */
 body {
-    background-color: #6fd07a;
     margin: 0;
-    min-height: 100vh;
-    overflow-x: hidden;
-    position: relative;
+    background: #6fd06f;
     font-family: Arial, sans-serif;
+    overflow-x: hidden;
 }
 
 /* LOGO */
 .logo {
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: min(80%, 400px);
+    display: block;
+    margin: 30px auto;
+    width: 300px;
+    max-width: 80%;
 }
 
 /* MAIN PANEL */
 .textpanel {
-    position: absolute;
-    left: 40px;
-    top: 50%;
-    transform: translateY(-50%);
-
-    width: min(360px, 85vw);
-    padding: 20px;
-
     background: rgba(255,255,255,0.5);
-    border-radius: 15px;
-
-    font-size: 18px;
-    line-height: 1.6;
+    border-radius: 20px;
+    padding: 20px;
+    width: 420px;
+    max-width: 85%;
+    margin: auto;
+    text-align: center;
+    font-size: 20px;
 }
 
-/* BUTTONS (BASE STYLE) */
+/* BUTTONS */
 .codes-button,
 .seeds-button,
-.leaderboard-button {
-    position: absolute;
-    left: 40px;
+.leaderboard-button,
+.pictures-button {
+    display: block;
+    width: 220px;
+    margin: 15px auto;
+    padding: 14px;
 
-    width: 140px;
-
-    background: white;
     border: none;
-    border-radius: 15px;
+    border-radius: 20px;
+    background: white;
 
-    padding: 10px;
-    font-size: 18px;
+    font-size: 20px;
     cursor: pointer;
+
+    transition: transform 0.15s;
 }
 
-/* BUTTON POSITIONS */
-.codes-button {
-    top: calc(50% + 170px);
+.codes-button:hover,
+.seeds-button:hover,
+.leaderboard-button:hover,
+.pictures-button:hover {
+    transform: scale(1.05);
 }
 
-.seeds-button {
-    top: calc(50% + 230px);
-}
-
-.leaderboard-button {
-    top: calc(50% + 290px);
-}
-
-/* POPUP BOX */
+/* POPUP GUI */
 .popup {
     display: none;
 
@@ -78,18 +63,20 @@ body {
     transform: translate(-50%, -50%);
 
     width: 420px;
-    max-width: 90vw;
-    padding: 20px;
+    max-width: 85vw;
+    max-height: 70vh;
 
-    background: white;
+    overflow-y: auto;
+
+    background: rgba(255,255,255,0.96);
+
     border: 3px solid black;
     border-radius: 20px;
-}
 
-/* POPUP TEXT */
-.popup-text {
-    font-size: 18px;
-    line-height: 1.6;
+    padding: 20px;
+    text-align: center;
+
+    z-index: 999;
 }
 
 /* CLOSE BUTTON */
@@ -101,55 +88,64 @@ body {
     width: 40px;
     height: 40px;
 
+    border: none;
+    border-radius: 12px;
+
     background: red;
     color: white;
-
-    border: none;
-    border-radius: 10px;
-
-    font-size: 20px;
+    font-size: 22px;
     cursor: pointer;
 }
 
-/* MODE BUTTON (PC / MOBILE TOGGLE) */
+/* POPUP TEXT */
+.popup-text {
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+/* PICTURES */
+.gallery-pic {
+    width: 80%;
+    max-width: 250px;
+
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+/* MODE BUTTON */
 .mode-button {
     position: fixed;
     bottom: 20px;
     right: 20px;
 
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
 
     border: none;
-    border-radius: 15px;
+    border-radius: 20px;
+
     background: white;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
     cursor: pointer;
 }
 
 .mode-button img {
-    width: 35px;
-    height: 35px;
+    width: 45px;
 }
 
-/* MOBILE MODE OVERRIDES */
-body.mobile-mode .textpanel {
-    left: 50%;
-    transform: translate(-50%, -50%);
+/* MOBILE MODE */
+.mobile-mode .logo {
+    width: 220px;
+}
+
+.mobile-mode .textpanel {
+    width: 90%;
+    font-size: 18px;
+}
+
+.mobile-mode .popup {
     width: 90%;
 }
 
-body.mobile-mode .codes-button,
-body.mobile-mode .seeds-button,
-body.mobile-mode .leaderboard-button {
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-body.mobile-mode .popup {
-    width: 90%;
+.mobile-mode .gallery-pic {
+    width: 95%;
 }
