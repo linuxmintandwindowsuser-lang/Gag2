@@ -164,3 +164,51 @@ body {
 .mobile-mode .gallery-pic {
     width: 95%;
 }
+/* FORUM BUTTON */
+.forum-button {
+    position: absolute;
+    left: 40px;
+    top: 780px;
+
+    width: 180px;
+    padding: 12px;
+
+    border: none;
+    border-radius: 18px;
+    background: white;
+
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* BACK BUTTON */
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+
+    width: 120px;
+    padding: 12px;
+
+    border: none;
+    border-radius: 18px;
+    background: white;
+
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* FORUM PAGE */
+.forum-container {
+    max-width: 900px;
+
+    margin: 350px auto 50px auto;
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    box-sizing: border-box;
+}
