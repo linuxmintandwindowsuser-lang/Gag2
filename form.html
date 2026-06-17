@@ -10,24 +10,23 @@
 </head>
 <body>
 
-    <img src="root/pic/logo.png" class="logo">
-
+    <!-- Back Button -->
     <button class="back-button" onclick="goHome()">
         ← Back
     </button>
 
+    <!-- Logo -->
+    <img src="root/pic/logo.png" class="logo">
+
+    <!-- Forum Panel -->
     <div class="textpanel">
         <strong>Grow A Garden 2 Forum</strong><br><br>
-        Talk about leaks, seeds, updates, and more!
+        Talk about leaks, seeds, updates, trades and more!
     </div>
 
-    <div style="
-        max-width: 900px;
-        margin: 350px auto 50px auto;
-        background: white;
-        padding: 20px;
-        border-radius: 20px;
-    ">
+    <!-- Disqus Container -->
+    <div class="forum-container">
+
         <div id="disqus_thread"></div>
 
         <script>
@@ -42,12 +41,13 @@
         <noscript>
             Please enable JavaScript to view comments powered by Disqus.
         </noscript>
+
     </div>
 
     <script>
-    function goHome() {
-        window.location.href = "index.html";
-    }
+        function goHome() {
+            window.location.href = "index.html";
+        }
     </script>
 
 </body>
