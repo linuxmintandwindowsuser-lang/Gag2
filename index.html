@@ -18,24 +18,25 @@
         <strong>TEAMGREENBEAN</strong>
     </div>
 
-    <!-- Codes button -->
+    <!-- Buttons -->
     <button class="codes-button" onclick="showCodes()">
         Codes
     </button>
 
-    <!-- Seeds button -->
     <button class="seeds-button" onclick="showSeeds()">
         Seeds
     </button>
 
-    <!-- Leaderboard button -->
     <button class="leaderboard-button" onclick="goLeaderboard()">
         Leaderboard
     </button>
 
-    <!-- Pictures button -->
     <button class="pictures-button" onclick="showPictures()">
-        PICTURES
+        Pictures
+    </button>
+
+    <button class="leaks-button" onclick="showLeaks()">
+        LEAKS
     </button>
 
     <!-- CODES POPUP -->
@@ -105,7 +106,26 @@
             <img src="root/pic/pic2.png" class="gallery-pic"><br>
             <img src="root/pic/pic3.png" class="gallery-pic"><br>
             <img src="root/pic/pic4.png" class="gallery-pic"><br>
-            <img src="root/pic/pic5.png" class="gallery-pic">
+            <img src="root/pic/pic5.png" class="gallery-pic"><br><br>
+
+            <strong>Last Updated:</strong><br>
+            JUNE 16 2026
+        </div>
+    </div>
+
+    <!-- LEAKS POPUP -->
+    <div id="leaksGui" class="popup">
+        <button class="close-button" onclick="hideLeaks()">X</button>
+
+        <div class="popup-text">
+            <strong>Leaks</strong><br><br>
+
+            <img src="root/pic/leak1.png" class="gallery-pic"><br>
+            <img src="root/pic/leak2.png" class="gallery-pic"><br>
+            <img src="root/pic/leak3.png" class="gallery-pic"><br><br>
+
+            <strong>Last Updated:</strong><br>
+            JUNE 16 2026
         </div>
     </div>
 
@@ -114,7 +134,6 @@
         <img id="modeIcon" src="root/pic/pc.png">
     </button>
 
-    <!-- SCRIPT -->
     <script>
         function showCodes() {
             document.getElementById("codesGui").style.display = "block";
@@ -138,6 +157,14 @@
 
         function hidePictures() {
             document.getElementById("picturesGui").style.display = "none";
+        }
+
+        function showLeaks() {
+            document.getElementById("leaksGui").style.display = "block";
+        }
+
+        function hideLeaks() {
+            document.getElementById("leaksGui").style.display = "none";
         }
 
         function goLeaderboard() {
