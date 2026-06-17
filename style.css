@@ -34,7 +34,8 @@ body {
 .codes-button,
 .seeds-button,
 .leaderboard-button,
-.pictures-button {
+.pictures-button,
+.leaks-button {
     position: absolute;
     left: 40px;
 
@@ -49,7 +50,6 @@ body {
     cursor: pointer;
 }
 
-/* Original layout */
 .codes-button {
     top: 430px;
 }
@@ -62,9 +62,12 @@ body {
     top: 570px;
 }
 
-/* NEW Pictures button */
 .pictures-button {
     top: 640px;
+}
+
+.leaks-button {
+    top: 710px;
 }
 
 /* POPUPS */
