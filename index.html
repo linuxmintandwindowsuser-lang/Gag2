@@ -33,6 +33,11 @@
         Leaderboard
     </button>
 
+    <!-- Pictures button -->
+    <button class="pictures-button" onclick="showPictures()">
+        PICTURES
+    </button>
+
     <!-- CODES POPUP -->
     <div id="codesGui" class="popup">
         <button class="close-button" onclick="hideCodes()">X</button>
@@ -89,6 +94,21 @@
         </div>
     </div>
 
+    <!-- PICTURES POPUP -->
+    <div id="picturesGui" class="popup">
+        <button class="close-button" onclick="hidePictures()">X</button>
+
+        <div class="popup-text">
+            <strong>Pictures</strong><br><br>
+
+            <img src="root/pic/pic1.png" class="gallery-pic"><br>
+            <img src="root/pic/pic2.png" class="gallery-pic"><br>
+            <img src="root/pic/pic3.png" class="gallery-pic"><br>
+            <img src="root/pic/pic4.png" class="gallery-pic"><br>
+            <img src="root/pic/pic5.png" class="gallery-pic">
+        </div>
+    </div>
+
     <!-- MODE BUTTON -->
     <button class="mode-button" onclick="toggleMode()">
         <img id="modeIcon" src="root/pic/pc.png">
@@ -110,6 +130,14 @@
 
         function hideSeeds() {
             document.getElementById("seedsGui").style.display = "none";
+        }
+
+        function showPictures() {
+            document.getElementById("picturesGui").style.display = "block";
+        }
+
+        function hidePictures() {
+            document.getElementById("picturesGui").style.display = "none";
         }
 
         function goLeaderboard() {
