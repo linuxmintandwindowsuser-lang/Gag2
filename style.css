@@ -215,3 +215,6 @@ body {
 
     box-sizing: border-box;
 }
+.seedpacks-button {
+    position: absolute;
+}
