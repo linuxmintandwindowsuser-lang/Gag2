@@ -51,6 +51,10 @@
     FORUM
 </button>
 
+<button class="seedpacks-button" onclick="showSeedPacks()">
+EARN SEED PACKS
+</button>
+
     <!-- CODES POPUP -->
     <div id="codesGui" class="popup">
         <button class="close-button" onclick="hideCodes()">X</button>
@@ -152,6 +156,26 @@
     </div>
 </div>
 
+    <!-- EARN SEED PACKS POPUP -->
+<div id="seedPacksGui" class="popup">
+    <button class="close-button" onclick="hideSeedPacks()">X</button>
+
+    <div class="popup-text">
+        <strong>🌱 Earn Seed Packs</strong><br><br>
+
+        Vote for Grow A Garden 2 to earn rewards!<br><br>
+
+        <button onclick="window.open('https://gag.gg/vote/', '_blank')">
+            Open Vote Page
+        </button>
+
+        <br><br>
+
+        <strong>Last Updated:</strong><br>
+        JUNE 18 2026
+    </div>
+</div>
+    
     <!-- MODE BUTTON -->
     <button class="mode-button" onclick="toggleMode()">
         <img id="modeIcon" src="root/pic/pc.png">
@@ -196,6 +220,13 @@
 
         function goForum() {
     window.location.href = "forum.html";
+}
+        function showSeedPacks() {
+    document.getElementById("seedPacksGui").style.display = "block";
+}
+
+function hideSeedPacks() {
+    document.getElementById("seedPacksGui").style.display = "none";
 }
 
         let isMobileMode = false;
