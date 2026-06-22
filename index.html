@@ -55,6 +55,10 @@
 EARN SEED PACKS
 </button>
 
+    <button class="tracker-button" onclick="showTracker()">
+    🌱 LIVE TRACKER
+</button>
+
     <!-- CODES POPUP -->
     <div id="codesGui" class="popup">
         <button class="close-button" onclick="hideCodes()">X</button>
@@ -175,6 +179,20 @@ EARN SEED PACKS
     </div>
 </div>
 </div>
+
+    <!-- LIVE TRACKER POPUP -->
+<div id="trackerGui" class="popup">
+    <button class="close-button" onclick="hideTracker()">X</button>
+
+    <div class="popup-text">
+        <strong>🌱 Live Seed Tracker</strong>
+        <br><br>
+
+        <div id="seedList">
+            Loading...
+        </div>
+    </div>
+</div>
     
     <!-- MODE BUTTON -->
     <button class="mode-button" onclick="toggleMode()">
@@ -227,6 +245,37 @@ EARN SEED PACKS
 
 function hideSeedPacks() {
     document.getElementById("seedPacksGui").style.display = "none";
+}
+        function showTracker() {
+    document.getElementById("trackerGui").style.display = "block";
+    loadTracker();
+}
+
+function hideTracker() {
+    document.getElementById("trackerGui").style.display = "none";
+}
+
+async function loadTracker() {
+    try {
+        const response = await fetch("https://gag.gg/api/seed-restock");
+        const data = await response.json();
+
+        let html = "";
+
+        data.seeds.forEach(seed => {
+            if (seed.inStockNow) {
+                html += `🟢 ${seed.name} (${seed.lastQty})<br>`;
+            } else {
+                html += `🔴 ${seed.name}<br>`;
+            }
+        });
+
+        document.getElementById("seedList").innerHTML = html;
+
+    } catch (e) {
+        document.getElementById("seedList").innerHTML =
+            "Couldn't load tracker.";
+    }
 }
 
         let isMobileMode = false;
