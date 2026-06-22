@@ -227,3 +227,21 @@ body {
     font-size: 20px;
     cursor: pointer;
 }
+/* LIVE TRACKER BUTTON */
+.tracker-button {
+    position: absolute;
+
+    top: 430px;        /* change this */
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 220px;
+    padding: 12px;
+
+    border: none;
+    border-radius: 18px;
+    background: white;
+
+    font-size: 20px;
+    cursor: pointer;
+}
